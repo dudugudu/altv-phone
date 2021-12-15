@@ -79,6 +79,26 @@ function CallApp() {
 
   function ViwerFavorites() {
     return(<>
+    <div className='FavouritessViweI'>
+       <div className='between'>
+        <h1>Favourites</h1>
+        <i class="fal fa-plus"></i>
+       </div>
+      </div>
+      <div className='FavouritesViweII'>
+               
+        <CardFavourites/>
+        <CardFavourites/>
+        <CardFavourites/>
+        <CardFavourites/>
+        <CardFavourites/>
+        <CardFavourites/>
+        <CardFavourites/>
+        <CardFavourites/>
+        <CardFavourites/>
+        <CardFavourites/>
+        
+      </div>
     
     </>)
   }
@@ -107,34 +127,36 @@ function CallApp() {
   }
   function ViwerContacts() {
     return(<>
-     <div className='RecentViweI'>
+     <div className='ContactsViweI'>
        <div className='between'>
         <h1>Contacts</h1>
         <i class="fal fa-plus"></i>
        </div>
-       <InputGroup>
-    <InputLeftElement
-      pointerEvents='none'
-      children={<i class="fal fa-search"></i>}
-    />
-    <Input type='tel' placeholder='Phone number' />
-  </InputGroup>
-        
+       <div className='input-grup'>
+          <i class="fal fa-search ml-1"></i>
+          <input className='Input ml-2' type="text" placeholder='Search' />
+       </div>
       </div>
-      <div className='RecentViweII'>
-        <CardRecent/>
-        <CardRecent/>
-        <CardRecent/>
-        <CardRecent/>
-        <CardRecent/>
-        <CardRecent/>
-        <CardRecent/>
-        <CardRecent/>
-        <CardRecent/>
-        <CardRecent/>
-        <CardRecent/>
-        <CardRecent/>
-      
+      <div className='ContactsViweII'>
+                <CardContact/>
+                <CardContact/>
+                <CardContact/>
+                <CardContact/>
+                <CardContact/>
+                <CardContact/>
+                <CardContact/>
+                <CardContact/>
+                <CardContact/>
+                <CardContact/>
+                <CardContact/>
+                <CardContact/>
+                <CardContact/>
+                <CardContact/>
+                <CardContact/>
+                <CardContact/>
+                <CardContact/>
+                <CardContact/>
+                
       </div>
     </>)
   }
@@ -214,6 +236,27 @@ function CardRecent({name,phone,history}) {
           </div>
         </div>
       </div>  
+  </>)
+}
+function CardFavourites({}) {
+  return(<>
+    <div className='CardFavourites mt-1'>
+      <div className='IconAcount'></div>
+      <div className='InfoCardFavourites a-c'>
+          <p className='name '>Eduardo</p>
+          <i class="fal fa-info-circle mr-2"></i>
+      </div>
+    </div>
+  </>)
+}
+function CardContact(params) {
+  return(<>
+
+    <div className='CardContacts mt-1'>
+      <div className='InfoCardContacts a-c'>
+          <p className='name mb-1'>Eduardo</p>
+      </div>
+    </div> 
   </>)
 }
 
