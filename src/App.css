@@ -1,0 +1,447 @@
+/* IQUIVALENTA A BODY*/
+
+@font-face {
+    font-family: "San Francisco";
+    font-weight: 400;
+    src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
+}
+
+body {
+    font-family: 'San Francisco';
+}
+
+.App {
+    width: 100vw;
+    height: 100vh;
+}
+
+
+/* BOX QUE ENGLOBA PHONE*/
+
+.Phone {
+    float: right;
+    width: 378px;
+    height: 573px;
+    margin-top: calc( calc(calc(100vh - 573px) /8)*7);
+}
+
+
+/* CLASE RESPONSAVEL PELO ESQUELETO DO PHONE*/
+
+.Phone img {
+    position: absolute;
+    width: 378px;
+    height: 573px;
+}
+
+
+/*BOX RESPONSAVEL PELO FUNDO E PELO VIWER ACESSIVEL*/
+
+.BoxViwer,
+.BoxViwerI {
+    position: absolute;
+}
+
+.BoxViwer {
+    width: 241px;
+    height: 522.5px;
+    background-image: url('./img/walpaper.jpg');
+    background-size: 100%;
+    margin-left: 70px;
+    margin-top: 15px;
+}
+
+.BoxViwerI {
+    width: 240px;
+    height: 502px;
+    margin-left: 70px;
+    margin-top: 35px;
+    border-radius: .15rem;
+}
+
+
+/* RESPONSAVEL PELA TOPBAR DO PHONE*/
+
+.Topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 20px;
+}
+
+.Topbar p {
+    width: 35px;
+    font-size: 12px;
+    color: white;
+}
+
+.fa-battery-half {
+    transform: rotate(270deg);
+    font-size: 9px;
+}
+
+.fa-signal-4 {
+    font-size: 13px;
+}
+
+
+/* AJUSTES GLOBAIS*/
+
+.ml-4 {
+    margin-left: 1rem;
+}
+
+.ml-3 {
+    margin-left: .75rem;
+}
+
+.ml-2 {
+    margin-left: .5rem;
+}
+
+.ml-1 {
+    margin-left: .25rem;
+}
+
+.mr-4 {
+    margin-right: 1rem;
+}
+
+.mr-3 {
+    margin-right: .75rem;
+}
+
+.mr-2 {
+    margin-right: .5rem;
+}
+
+.mr-1 {
+    margin-right: .25rem;
+}
+
+.mb-2 {
+    margin-bottom: .5rem;
+}
+
+.between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.j-c {
+    display: flex;
+    justify-content: center;
+}
+
+.green {
+    background-color: #35c759 !important;
+}
+
+.flex {
+    display: flex;
+}
+
+.a-c {
+    display: flex;
+    align-items: center;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+
+/* RESPONSAVEL PELA TELA INICIAL SENDO:
+BVMaind : area geral de icones
+BVRodape : area para 4 icons no rodape
+*/
+
+.BVMain {
+    width: 100%;
+    height: 441.4px;
+}
+
+.BVRodape {
+    padding: 0 .35rem .35rem .35rem;
+    width: 100%;
+    height: 59.6px;
+}
+
+
+/*RESPONSAVEL PELOS ICONES DA TELA INICIAL*/
+
+.icon-Bar {
+    padding: 6.8px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.iconAPP {
+    border-radius: .8rem;
+    width: 40px;
+    height: 40px;
+    background-size: 100%;
+    background-position: center;
+    cursor: pointer;
+}
+
+
+/*RESPONSAVEL PELA TELA BASE DOS APP ABERTOS*/
+
+.BVMainApp {
+    width: 100%;
+    height: 486px;
+}
+
+.BarReturnExtern {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 15px;
+}
+
+.BarRetunr {
+    width: 100px;
+    height: 5px;
+    background-color: black;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+/* APP CALL*/
+
+
+/* >-- BOX CALL PRINCIPLA */
+
+.CallViwer {
+    width: 240px;
+    height: 445px;
+}
+
+
+/* >-- BOX CALL RODAPE CALL TOOLS */
+
+.CallTols {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 .5rem;
+    width: 100%;
+    height: 45px;
+    border-top: 1px solid #cacaca;
+}
+
+.CallTolsIcon {
+    color: #929292;
+    width: 45px;
+    height: 26px;
+    cursor: pointer;
+}
+
+.CallTolsIcon:hover {
+    color: #0179fe;
+}
+
+.CallTolsIcon i {
+    font-weight: 1000;
+    font-size: 14px;
+}
+
+.CallTolsIcon p {
+    width: 100%;
+    text-align: center;
+    font-size: 9px;
+}
+
+
+/* >-- BOX DE DISCAGEM*/
+
+.BoxDisc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: 500;
+    width: 100%;
+    height: 115px;
+}
+
+
+/*  BOX DE KEY PAD*/
+
+
+/* >-- BOX PRINCIPAL DO KEY PAD*/
+
+.BoxNumber {
+    width: 100%;
+    padding: 20px calc( calc(100% - 180px)/2);
+}
+
+
+/* >-- LINHA DE DIGITOS*/
+
+.LineNumber {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 180px;
+    height: 50px;
+}
+
+
+/* >--  DIGITOS PADRAO */
+
+.Number {
+    font-weight: 500;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #e5e5e5;
+    cursor: pointer;
+}
+
+.Number h1 {
+    margin-top: 4px;
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.Number p {
+    margin-top: -6px;
+    font-size: 8px;
+    width: 100%;
+    text-align: center;
+}
+
+
+/* >--  DIGITOS SIMBOLOGIA CENTRALIZADO */
+
+.NumberCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #e5e5e5;
+    cursor: pointer;
+}
+
+.NumberCenter .fa-phone-alt {
+    font-size: 24px;
+    color: white;
+}
+
+
+/* >>-- HOVER KEYPAD*/
+
+.LineNumber .Number:hover,
+.LineNumber .NumberCenter:hover {
+    background-color: #bbb;
+}
+
+.LineNumber .green:hover {
+    background-color: #0d962f !important;
+}
+
+
+/* >-- DIGITO SEM BACKGROUD*/
+
+.FakeNumber {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e5e5e5;
+}
+
+.FakeNumber i {
+    font-size: 20px;
+    font-weight: 1000;
+}
+
+.FakeNumber i:hover {
+    color: #bbb;
+}
+
+
+/* Recentes*/
+
+.RecentViweI {
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
+    width: 100%;
+    padding: 5px;
+}
+
+.RecentViweII {
+    overflow: auto;
+    width: 100%;
+    height: 403px;
+    padding: 5px 0;
+    background-color: #ffffff;
+    border-top: 1px solid #cacaca;
+}
+
+
+/**/
+
+.CardRecente {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 45px;
+}
+
+.IconCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 100%;
+}
+
+.IconCard i {
+    font-size: 18px;
+    color: #cacaca;
+}
+
+.InfoCard {
+    display: flex;
+    justify-content: space-between;
+    width: 210px;
+    height: 100%;
+    border-bottom: 1px solid #cacaca;
+}
+
+.InfoBox .name {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.InfoBox .phone {
+    font-size: 9px;
+}
+
+.InfoBox .time {
+    color: #cacaca;
+    font-size: 12px;
+}
+
+.InfoBox i {
+    color: #007cfd;
+}
+
+
+/*contacts*/
