@@ -1,16 +1,35 @@
-import { useState } from 'react'
-import { InputGroup ,InputLeftElement,Input } from '@chakra-ui/react'
+import { useState, useEffect } from 'react'
 
-function CallApp() {
+import { Link ,useParams} from "react-router-dom";
 
+
+function  CallApp({setMain,setDesfoc,BackPage}) {
   const [Favorites,setFavorites] = useState(false);  
   const [Recents,setRecents] = useState(false); 
   const [Contacts,setContacts] = useState(false);
-  const [KeyPad,setKeyPad] = useState(true);
+  const [KeyPad,setKeyPad] = useState(false);
+  const{aba} = useParams();
+
+  useEffect(() => {
+    setMain({color:'#f8f7fc',img:'none'})
+    setDesfoc('none')
+  }, [])
+  
+  useEffect(() => {
+    if (aba === 'dialpad') {
+      setFavorites(false);setRecents(false);setContacts(false);setKeyPad(true);
+    }else if (aba === 'contacts') {
+      setFavorites(false);setRecents(false);setContacts(true);setKeyPad(false)
+    }else if (aba === 'recents') {
+      setFavorites(false);setRecents(true);setContacts(false);setKeyPad(false)
+    }else if (aba === 'favourites') {
+      setFavorites(true);setRecents(false);setContacts(false);setKeyPad(false)
+    }
+  }, [aba])
+
   let numberDisc= ''
   function NumberAdd(n) {
     numberDisc = numberDisc + n
-   
     document.getElementById("NumberDisc").innerHTML = numberDisc;
   }
   function NumberRem() {
@@ -20,6 +39,8 @@ function CallApp() {
   }
  
   function ViwerKeypad() {
+    
+   
     const [Backspace,setBackspace] = useState(false);
     function attBack() {
       let tm = numberDisc.length
@@ -33,7 +54,7 @@ function CallApp() {
       alert(numberDisc)
     }
    return(<>
-      <div className='BoxDisc'>
+      <div className='BoxDisc' >
         <h1 id='NumberDisc'>{numberDisc}</h1>
       </div>
       <div className='BoxNumber'>
@@ -51,6 +72,7 @@ function CallApp() {
           <Number caracter='P Q R S' onclick={()=>{NumberAdd('7');attBack()}}>7</Number>
           <Number caracter='T U V' onclick={()=>{NumberAdd('8');attBack()}}>8</Number>
           <Number caracter='W X Y Z' onclick={()=>{NumberAdd('9');attBack()}}>9</Number>
+          
         </div>
         <div className='LineNumber mb-2'>
           <div className='NumberCenter'  onClick={()=>{NumberAdd('*');attBack()}}>
@@ -65,7 +87,9 @@ function CallApp() {
           </div> 
         </div>
         <div className='LineNumber mb-2'>
-          <div className='FakeNumber'></div>
+          <div className='FakeNumber'>
+          {Backspace &&    <i class="fal fa-plus"></i>}
+          </div>
           <div className='NumberCenter green' onClick={()=>{Call()}}>
             <i class="fal fa-phone-alt"></i>
           </div> 
@@ -78,6 +102,7 @@ function CallApp() {
   }
 
   function ViwerFavorites() {
+    
     return(<>
     <div className='FavouritessViweI'>
        <div className='between'>
@@ -103,6 +128,7 @@ function CallApp() {
     </>)
   }
   function ViwerRecents() {
+    
     return(<>
       <div className='RecentViweI'>
         <h1>Recentes</h1>
@@ -126,6 +152,7 @@ function CallApp() {
     </>)
   }
   function ViwerContacts() {
+   
     return(<>
      <div className='ContactsViweI'>
        <div className='between'>
@@ -168,11 +195,12 @@ function CallApp() {
     }
     
   }
+  
 
   return (<>
-  <div className='BVMainApp'>
-          
+  <div className='BVMainFull' >
           <div className="CallViwer">
+         
             {Favorites && <ViwerFavorites/>}
             {Recents && <ViwerRecents/>}
             {Contacts && <ViwerContacts/>}
@@ -181,33 +209,43 @@ function CallApp() {
           </div>
             
             <div className='CallTols'>
-              <div className='CallTolsIcon' onClick={()=>{setFavorites(true);setRecents(false);setContacts(false);setKeyPad(false)}}>
-                <div className='j-c'>                  
-                  <i class="fal fa-star"></i>
+              <Link to="/PhoneCall/favourites">
+                <div className='CallTolsIcon' >
+                  <div className='j-c'>                  
+                    <i class="fal fa-star"></i>
+                  </div>
+                  <p>Favorites</p>
                 </div>
-                <p>Favorites</p>
-              </div>
-              <div className='CallTolsIcon' onClick={()=>{setFavorites(false);setRecents(true);setContacts(false);setKeyPad(false)}}>
-                <div className='j-c'>                  
-                <i class="fal fa-clock"></i>
+              </Link>
+              <Link to="/PhoneCall/recents">
+                <div className='CallTolsIcon'>
+                  <div className='j-c'>                  
+                  <i class="fal fa-clock"></i>
+                  </div>
+                  <p>Recents</p>
                 </div>
-                <p>Recents</p>
-              </div>
-              <div className='CallTolsIcon' onClick={()=>{setFavorites(false);setRecents(false);setContacts(true);setKeyPad(false)}}>
-                <div className='j-c'>                  
-                <i class="fal fa-user-circle"></i>
+              </Link>
+              <Link to="/PhoneCall/contacts">
+                <div className='CallTolsIcon'>
+                  <div className='j-c'>                  
+                  <i class="fal fa-user-circle"></i>
+                  </div>
+                  <p>Contacts</p>
                 </div>
-                <p>Contacts</p>
-              </div>
-              <div className='CallTolsIcon' onClick={()=>{setFavorites(false);setRecents(false);setContacts(false);setKeyPad(true);abrirSub('dialpad')}}>
-                <div className='j-c'>     
-                <i class="material-icons">dialpad</i>  
+              </Link>
+              <Link to="/PhoneCall/dialpad">
+                <div className='CallTolsIcon'>
+                  <div className='j-c'>     
+                  <i class="material-icons">dialpad</i>  
+                  </div>
+                  <p>Keypad</p>
                 </div>
-                <p>Keypad</p>
-              </div>
+              </Link>
             </div>
           </div>
-  
+          <Link to="/">
+          <div className='BarReturnExtern'><div className='BarRetunr' onClick={BackPage}></div></div>
+          </Link>
     </>)
 }
 
@@ -241,7 +279,8 @@ function CardRecent({name,phone,history}) {
 function CardFavourites({}) {
   return(<>
     <div className='CardFavourites mt-1'>
-      <div className='IconAcount'></div>
+      <div className='IconAcount' style={{ backgroundImage: 'url("https://cdn.discordapp.com/attachments/693519401999269949/920631582887411742/pp_2.jpg")'}} >
+      </div>
       <div className='InfoCardFavourites a-c'>
           <p className='name '>Eduardo</p>
           <i class="fal fa-info-circle mr-2"></i>
@@ -259,6 +298,7 @@ function CardContact(params) {
     </div> 
   </>)
 }
+
 
 export {
   CallApp

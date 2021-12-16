@@ -1,61 +1,59 @@
 import './App.css';
 import React from 'react';
-import { useEffect, useState } from 'react';
 import model   from './img/iphone.png'
 import { AppIcon } from './component/icons'
 import{CallApp} from './component/call'
+import{CallFull} from './component/callfull'
+import { Routes, Route } from "react-router-dom";
+import {useState,useEffect} from'react'
 
 function App() {
-  const [IsApp,setIsApp] = useState(false);
-
-
-  function ativeAPP(){
-    if (!IsApp) {
-      console.log('entrando');
-      document.getElementById('main').style.backgroundColor = '#f8f7fc';
-      document.getElementById('main').style.backgroundImage = 'none';
-      setIsApp(true)
-    }else {
-      document.getElementById('main').style.backgroundColor = 'transparent';
-      document.getElementById('main').style.backgroundImage = "url(/static/media/walpaper.04f956eb.jpg)";
-      setIsApp(false)
-    }
-  }
-
+  const [Main, setMain] = useState({color:'transparent',img:'url(/static/media/walpaper.04f956eb.jpg)',filter:'blur(0)'})
+  const [Desfoc, setDesfoc] = useState('none')
+ 
   return (
-    <div className="App">
+    <div className="App" >
       <div className='Phone'>
-        <div className='BoxViwer' id='main'> 
-        <div className='Topbar'>
-          <p className='ml-4'>Vivo</p>
-          <p className='mr-3 between'><i class="fal fa-battery-half"></i> <i class="fal fa-signal-4"></i></p>
-        </div>
-        </div>
-        <img src={model} alt="png" />
-        <div className='BoxViwerI'>
-        {!IsApp?
-        <>
-          <div className='BVMain'></div>
-          <div className='BVRodape'>
-            <div className='icon-Bar'>
-              <AppIcon img='call' onclick={()=>{ativeAPP()}}/>
-              <AppIcon img='contacts' />
-              <AppIcon img='msg' />
-              <AppIcon img='camera' />
-            </div>
+       
+        <div className='BoxViwer' style={{ backgroundColor: Main.color , backgroundImage: Main.img , backdropFilter: Main.filter}} >     
+          <div className='BoxViwerDesfoc' style={{ display:Desfoc}} ></div>
+            <div className='Topbar'>
+              <p className='ml-4'>Vivo</p>
+              <p className='mr-3 between'><i class="fal fa-battery-half"></i> <i class="fal fa-signal-4"></i></p>
+            
           </div>
-          </>
-          : <>
-          <CallApp/>
-          <div className='BarReturnExtern'><div className='BarRetunr' onClick={()=>ativeAPP()}></div></div></>}
-          
-          
         </div>
         
+        <img src={model} alt="png" />
+        <div className='BoxViwerI'>
+          <Routes>
+            <Route path="/" element={<HomeCell setMain={setMain} setDesfoc={setDesfoc} />} />
+            <Route path="/PhoneCall/:aba" element={<CallApp  setMain={setMain} setDesfoc={setDesfoc}/> }  />
+            <Route path="/PhoneCallFull/:aba" element={<CallFull  setMain={setMain} setDesfoc={setDesfoc}/> }  />
+          </Routes>
+        </div>
       </div>
     </div>
   );
 }
 
+function HomeCell({setMain,setDesfoc}) {
+  useEffect(() => {
+    setMain({color:'transparent',img:'url(/static/media/walpaper.04f956eb.jpg)'})
+    setDesfoc('none')
+  }, [])
+ 
+  return(<>
+    <div className='BVMain'></div>
+      <div className='BVRodape'>
+        <div className='icon-Bar'>
+          <AppIcon img='call' to='/PhoneCall/dialpad'/>
+          <AppIcon img='contacts' to='/PhoneCall/contacts'/>
+          <AppIcon img='msg' to='/msg'/>
+          <AppIcon img='camera' to='/camera'/>
+        </div>
+      </div>
+  </>)
+}
 
 export default App;

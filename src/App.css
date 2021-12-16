@@ -31,6 +31,7 @@
     }
     /*BOX RESPONSAVEL PELO FUNDO E PELO VIWER ACESSIVEL*/
     
+    .BoxViwerDesfoc,
     .BoxViwer,
     .BoxViwerI {
         position: absolute;
@@ -43,6 +44,14 @@
         background-size: 100%;
         margin-left: 70px;
         margin-top: 15px;
+    }
+    
+    .BoxViwerDesfoc {
+        display: show;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        backdrop-filter: blur(2px);
     }
     
     .BoxViwerI {
@@ -66,6 +75,7 @@
         width: 35px;
         font-size: 12px;
         color: white;
+        z-index: 1;
     }
     
     .fa-battery-half {
@@ -75,6 +85,7 @@
     
     .fa-signal-4 {
         font-size: 13px;
+        z-index: 1;
     }
     /* AJUSTES GLOBAIS*/
     
@@ -145,7 +156,13 @@
     .between {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: space-between !important;
+    }
+    
+    .evenly {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly !important;
     }
     
     .j-c {
@@ -155,6 +172,14 @@
     
     .green {
         background-color: #35c759 !important;
+    }
+    
+    .blueC {
+        color: #0179fe !important;
+    }
+    
+    .red {
+        background-color: #eb4e3d !important;
     }
     
     .flex {
@@ -176,12 +201,18 @@
     }
     /* RESPONSAVEL PELA TELA INICIAL SENDO:
 BVMaind : area geral de icones
+BVMaindFull : area full apena com bar return app
 BVRodape : area para 4 icons no rodape
 */
     
     .BVMain {
         width: 100%;
         height: 441.4px;
+    }
+    
+    .BVMainFull {
+        width: 100%;
+        height: 487px;
     }
     
     .BVRodape {
@@ -368,6 +399,14 @@ BVRodape : area para 4 icons no rodape
     .FakeNumber i:hover {
         color: #bbb;
     }
+    
+    .FakeNumber .fa-plus {
+        color: #0179fe;
+    }
+    
+    .FakeNumber .fa-plus:hover {
+        color: #0179fe;
+    }
     /* Recentes*/
     
     .RecentViweI {
@@ -533,10 +572,11 @@ BVRodape : area para 4 icons no rodape
     }
     
     .IconAcount {
+        display: flex;
         width: 25px;
         height: 25px;
         border-radius: 50%;
-        background-color: teal;
+        background-size: 100%;
     }
     
     .InfoCardFavourites {
@@ -555,4 +595,195 @@ BVRodape : area para 4 icons no rodape
     
     .InfoCardFavourites i {
         color: #0179fe;
+    }
+    /* CALL LINK*/
+    
+    .BoxMainCallLink {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .CallLinkFull {
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+    }
+    
+    .BoxViwerCallLink {
+        width: 100%;
+        height: 360px;
+    }
+    
+    .BoxViwerCallLink h1 {
+        width: 100%;
+        text-align: center;
+        color: white;
+        font-size: 22px;
+        padding-top: 60px;
+    }
+    
+    .BoxViwerCallLink p {
+        width: 100%;
+        text-align: center;
+        color: white;
+        font-size: 14px;
+        padding-top: 10px;
+    }
+    
+    .LineNumberCallLink {
+        display: flex;
+        align-items: center;
+        width: 150px;
+    }
+    
+    .NumberCenterCallLink {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+        color: white;
+    }
+    
+    .NumberCenterCallLink i {
+        font-size: 26px;
+    }
+    
+    .LineNumberCallLinkTools {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+    
+    .NumberCenterCallLinkTools {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        cursor: pointer;
+        color: white;
+        background-color: rgb(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+    }
+    
+    .NumberCenterCallLinkTools i {
+        font-size: 22px;
+    }
+    
+    .BoxToolsCallLinkExt {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 50px 10px 10px 10px;
+    }
+    
+    .BoxToolsCallLink {
+        padding: 10px;
+        width: 190px;
+        border-radius: 10px;
+    }
+    
+    .NumberCenterCallLinkToolsExt p {
+        padding-top: 2px;
+        color: white;
+        font-size: 10px;
+        width: 100%;
+        text-align: center;
+        font-weight: 400;
+    }
+    /*CONTACTS*/
+    
+    .BoxMainInfoContact {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .BoxMainInfoContact label {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        color: #0179fe;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 20px 5px 10px 5px;
+    }
+    
+    .BoxMainInfoContact label i {
+        padding-top: 1px;
+        margin-right: 25px;
+        font-size: 20px;
+        font-weight: 500;
+    }
+    
+    .FullContact {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 5px 0;
+    }
+    
+    .FullContactII {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 30px 0;
+    }
+    
+    .PerfilContacts {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-image: url('./img/Perfis/pp.jpg');
+        background-size: 100%;
+    }
+    
+    .NumberCenterContacts {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        cursor: pointer;
+        color: white;
+        background-color: #0179fe;
+        cursor: pointer;
+    }
+    
+    .NumberCenterContacts i {
+        font-size: 17px;
+    }
+    
+    .CardContactsTools {
+        width: 100%;
+        height: 200px;
+        font-size: 13px;
+        font-weight: 500;
+    }
+    
+    .CardContactInfoTools {
+        padding: 5px 10px;
+        border-bottom: 1px solid #acacac;
+    }
+    
+    .GlobalContactsTolls {
+        display: flex;
+        justify-content: center;
+        width: 50px;
+    }
+    
+    .NumberCenterContactsExt p {
+        padding-top: 2px;
+        color: #929292;
+        font-size: 8px;
+        width: 100%;
+        text-align: center;
+        font-weight: 600;
     }
