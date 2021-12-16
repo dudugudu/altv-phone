@@ -10,6 +10,10 @@
         font-family: 'San Francisco';
     }
     
+    a {
+        display: flex;
+    }
+    
     .App {
         width: 100vw;
         height: 100vh;

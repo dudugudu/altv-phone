@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
 
-import { Link ,useParams} from "react-router-dom";
+import { Link ,useParams,useLocation} from "react-router-dom";
+import React from 'react';
+
+
 
 
 function  CallApp({setMain,setDesfoc,BackPage}) {
@@ -10,6 +13,24 @@ function  CallApp({setMain,setDesfoc,BackPage}) {
   const [KeyPad,setKeyPad] = useState(false);
   const{aba} = useParams();
 
+  let contatos = [
+    { "number": "925-252", "data": { "name": "Eduardo", "favorito": false } },
+    { "number": "922-252", "data": { "name": "Andre", "favorito": false } },
+    { "number": "932-252", "data": { "name": "Gustavo", "favorito": true } },
+    { "number": "956-252", "data": { "name": "Xipanca", "favorito": false } },
+    { "number": "967-252", "data": { "name": "Allan", "favorito": false } },
+    { "number": "997-252", "data": { "name": "Nick", "favorito": false } }
+]
+let recents = [
+  { "number": "925-252", "data": '1639666300104' },
+  { "number": "922-252", "data": '1639667562581' },
+  { "number": "932-252","data": '1639669094192' },
+  { "number": "956-252", "data": '1639669176169' },
+  { "number": "967-252","data": '1639669176169' },
+  { "number": "997-252", "data": '1639669176169' },
+]
+  
+ 
   useEffect(() => {
     setMain({color:'#f8f7fc',img:'none'})
     setDesfoc('none')
@@ -111,18 +132,14 @@ function  CallApp({setMain,setDesfoc,BackPage}) {
        </div>
       </div>
       <div className='FavouritesViweII'>
-               
-        <CardFavourites/>
-        <CardFavourites/>
-        <CardFavourites/>
-        <CardFavourites/>
-        <CardFavourites/>
-        <CardFavourites/>
-        <CardFavourites/>
-        <CardFavourites/>
-        <CardFavourites/>
-        <CardFavourites/>
-        
+               {contatos.map(function(obj){
+                if(obj.data.favorito == true){
+                    return (<CardFavourites db={obj}/>)
+                }
+            })}   
+                 
+     
+      
       </div>
     
     </>)
@@ -135,23 +152,26 @@ function  CallApp({setMain,setDesfoc,BackPage}) {
       </div>
       
       <div className='RecentViweII'>
-        <CardRecent/>
-        <CardRecent/>
-        <CardRecent/>
-        <CardRecent/>
-        <CardRecent/>
-        <CardRecent/>
-        <CardRecent/>
-        <CardRecent/>
-        <CardRecent/>
-        <CardRecent/>
-        <CardRecent/>
-        <CardRecent/>
+        {recents.map(function (obj) {
+          return contatos.map(function (objII) {
+            if ( objII.number === obj.number) {
+              return( <CardRecent db={objII} data={Temp(obj.data)}/>)
+            }
+          })
+        })}
       
       </div>
     </>)
   }
   function ViwerContacts() {
+  let contatos = [
+      { "number": "925-252", "data": { "name": "Eduardo", "favorito": false } },
+      { "number": "922-252", "data": { "name": "Andre", "favorito": false } },
+      { "number": "932-252", "data": { "name": "Gustavo", "favorito": false } },
+      { "number": "956-252", "data": { "name": "Xipanca", "favorito": false } },
+      { "number": "967-252", "data": { "name": "Allan", "favorito": false } },
+      { "number": "997-252", "data": { "name": "Nick", "favorito": false } }
+  ]
    
     return(<>
      <div className='ContactsViweI'>
@@ -165,24 +185,8 @@ function  CallApp({setMain,setDesfoc,BackPage}) {
        </div>
       </div>
       <div className='ContactsViweII'>
-                <CardContact/>
-                <CardContact/>
-                <CardContact/>
-                <CardContact/>
-                <CardContact/>
-                <CardContact/>
-                <CardContact/>
-                <CardContact/>
-                <CardContact/>
-                <CardContact/>
-                <CardContact/>
-                <CardContact/>
-                <CardContact/>
-                <CardContact/>
-                <CardContact/>
-                <CardContact/>
-                <CardContact/>
-                <CardContact/>
+      {contatos.map(data => <CardContact db={data}/>)}
+               
                 
       </div>
     </>)
@@ -257,7 +261,7 @@ function Number({children,caracter,onclick}) {
   return(<><div className='Number' onClick={onclick}><h1>{children}</h1><p>{caracter}</p></div></>)
 }
 
-function CardRecent({name,phone,history}) {
+function CardRecent({db,data}) {
   return(<>
       <div className='CardRecente'>
         <div className='IconCard'>
@@ -265,40 +269,61 @@ function CardRecent({name,phone,history}) {
         </div>
         <div className='InfoCard a-c'>
           <div className='InfoBox'>
-            <p className='name'>Eduardo</p>
-            <p className='phone'>+49 991151546</p>
+            <p className='name'>{db.data.name}</p>
+            <p className='phone'>{db.number}</p>
           </div>
           <div className='InfoBox a-c mr-2'>
-            <p className='time'>21 hours ago</p>
+            <p className='time'>{data}</p>
+            <Link to={`/PhoneCallFull/infoContacts?number=${db.number}&name=${db.data.name}&favorito=${db.data.favorito}&lastpage=recents`}>
             <i class="fal fa-info-circle ml-1"></i>
+          </Link>
           </div>
         </div>
       </div>  
   </>)
 }
-function CardFavourites({}) {
+function CardFavourites({db}) {
   return(<>
     <div className='CardFavourites mt-1'>
       <div className='IconAcount' style={{ backgroundImage: 'url("https://cdn.discordapp.com/attachments/693519401999269949/920631582887411742/pp_2.jpg")'}} >
       </div>
       <div className='InfoCardFavourites a-c'>
-          <p className='name '>Eduardo</p>
-          <i class="fal fa-info-circle mr-2"></i>
+          <p className='name '>{db.data.name}</p>
+          <Link to={`/PhoneCallFull/infoContacts?number=${db.number}&name=${db.data.name}&favorito=${db.data.favorito}&lastpage=favourites`}>
+            <i class="fal fa-info-circle mr-2"></i>
+          </Link>
       </div>
     </div>
   </>)
 }
-function CardContact(params) {
+function CardContact({db}) {
   return(<>
-
     <div className='CardContacts mt-1'>
-      <div className='InfoCardContacts a-c'>
-          <p className='name mb-1'>Eduardo</p>
-      </div>
+      <Link to={`/PhoneCallFull/infoContacts?number=${db.number}&name=${db.data.name}&favorito=${db.data.favorito}&lastpage=contacts`}>
+        <div className='InfoCardContacts a-c'>
+            <p className='name mb-1'>{db.data.name}</p>
+        </div>
+      </Link>
     </div> 
   </>)
 }
 
+function Temp(n) {
+  var temAtual = new Date().getTime();
+  let final = temAtual - parseInt(n)
+  let segunds = Math.floor(final / 1000 ) 
+  let min = Math.floor(segunds / 60)
+  let hr = Math.floor(min / 60)
+  console.log(temAtual);
+  if (hr > 0 ) {
+    return hr + " hours ago"
+  }else if (min > 0) {
+    return min + " minutes ago"
+  }else if (segunds > 0) {
+    return segunds + " seconds ago"
+  }
+  
+}
 
 export {
   CallApp

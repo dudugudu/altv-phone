@@ -1,13 +1,20 @@
 import { useState, useEffect } from 'react'
 
-import { Link ,useParams} from "react-router-dom";
+import { Link ,useParams,useLocation} from "react-router-dom";
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 
 function  CallFull({setMain,setDesfoc,BackPage}) {
+  
+ 
   const [InfoContacts,setInfoContacts] = useState(false); 
   const [CallLink,setCallLink] = useState(false);  
   const{aba} = useParams();
-  console.log(aba)
+  
+ 
   useEffect(() => {
    
     setMain({color:'#f8f7fc',img:'none'})
@@ -37,15 +44,22 @@ function  CallFull({setMain,setDesfoc,BackPage}) {
 }
 
 function PGInfoContacts({setMain,setDesfoc}) {
+  let query = useQuery()
+  let favorito = query.get("favorito")
   useEffect(() => {
     setMain({color:'#f8f7fc',img:'none'})
     setDesfoc('none')
   }, [])
   return( 
     <div className='BoxMainInfoContact'>
-     <label > <i class="material-icons-outlined">chevron_left</i> <p>Contacts</p></label>
+     <label > 
+       <Link to={`/PhoneCall/${query.get("lastpage")}`}>
+       <i class="material-icons-outlined">chevron_left</i> 
+       </Link>
+       <p>Contacts</p>
+       </label>
      <div className='FullContact'> <div className='PerfilContacts'></div></div>
-     <div className='FullContact'>Eduardo Gustavo</div>
+     <div className='FullContact'>{query.get("name")}</div>
      <div className='FullContactII evenly'>
       <div className='NumberCenterContactsExt'>
         <div className='GlobalContactsTolls'>
@@ -76,11 +90,11 @@ function PGInfoContacts({setMain,setDesfoc}) {
        
       <div className='CardContactInfoTools'>
           <p>Nome</p>
-          <p className='blueC'> 49 921156165 </p>
+          <p className='blueC'>{query.get("name")} </p>
       </div>
       <div className='CardContactInfoTools'>
           <p>Phone</p>
-          <p className='blueC'> 49 921156165 </p>
+          <p className='blueC'> {query.get("number")} </p>
       </div>
       <div className='CardContactInfoTools'>
         
