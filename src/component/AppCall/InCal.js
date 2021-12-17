@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { Link ,useParams,useLocation} from "react-router-dom";
-
+import { Link } from "react-router-dom";
+import {TimeFormat} from '../../ultis/functions'
 
 function Call({setMain,setDesfoc}) {
   const [Inccall,setInccall] = useState(false);  
@@ -10,7 +10,7 @@ function Call({setMain,setDesfoc}) {
   useEffect(() => {
     setMain({color:'transparent',img:'url(/static/media/walpaper.04f956eb.jpg)',filter:'blur(20px)'})
     setDesfoc('block')
-  }, [])
+  },[setMain,setDesfoc])
 
   useEffect(() => {
     timeLeft.incal && setTimeout(() => setTimeLeft({incal:true, decorido:  timeLeft.decorido + 1 }), 1000);
@@ -20,7 +20,7 @@ function Call({setMain,setDesfoc}) {
   <div className='BoxMainCallLink'>
     <div className='BoxViwerCallLink'>
       <h1>995-120</h1>
-      {Inccall &&<p>{timeLeft.decorido}</p>}
+      {Inccall &&<p>{TimeFormat(timeLeft.decorido)}</p>}
       {Inccall &&  
         <div className='BoxToolsCallLinkExt '>
           <div className='BoxToolsCallLink'>
@@ -49,12 +49,11 @@ function Call({setMain,setDesfoc}) {
           <div className='NumberCenterCallLink green' onClick={()=>{setInccall(true);setStyle('center');setTimeLeft({incal:true , decorido: 1})}}>
             <i class="material-icons">call</i>
           </div> 
-          }
+        }
       </div>
     </div>
-  </div> )
+  </div>)
 }
-
 
 function ButonCallTools({children,name,onclick}){
   return(<>
@@ -66,7 +65,5 @@ function ButonCallTools({children,name,onclick}){
     </div>
   </>)
 }
-
-
 
 export{ Call}

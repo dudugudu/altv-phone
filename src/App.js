@@ -2,8 +2,7 @@ import './App.css';
 import React from 'react';
 import model   from './img/iphone.png'
 import { AppIcon } from './component/icons'
-import{CallApp} from './component/call'
-import{CallFull} from './component/callfull'
+import{PhoneFullViwer} from './component/phoneViwerFull'
 import { Routes, Route } from "react-router-dom";
 import {useState,useEffect} from'react'
 import {motion} from 'framer-motion'
@@ -29,8 +28,7 @@ function App() {
         <div className='BoxViwerI'>
           <Routes>
             <Route path="/" element={<HomeCell setMain={setMain} setDesfoc={setDesfoc} />} />
-            <Route path="/PhoneCall/:aba" element={<CallApp  setMain={setMain} setDesfoc={setDesfoc}/> }  />
-            <Route path="/PhoneCallFull/:aba" element={<CallFull  setMain={setMain} setDesfoc={setDesfoc}/> }  />
+            <Route path="/PhoneCallFull/:appType" element={<PhoneFullViwer  setMain={setMain} setDesfoc={setDesfoc}/> }  />
           </Routes>
         </div>
       </div>
@@ -38,11 +36,11 @@ function App() {
   );
 }
 
-function HomeCell({setMain,setDesfoc}) {
+function HomeCell({setMain,setDesfoc,calback}) {
   useEffect(() => {
     setMain({color:'transparent',img:'url(/static/media/walpaper.04f956eb.jpg)'})
     setDesfoc('block')
-  }, [])
+  },[setMain,setDesfoc])
  
   return(<>
     <div className='BVMain'>
@@ -60,8 +58,8 @@ function HomeCell({setMain,setDesfoc}) {
     </div>
       <div className='BVRodape'>
         <div className='icon-Bar'>
-          <AppIcon img='call' to='/PhoneCall/dialpad'/>
-          <AppIcon img='contacts' to='/PhoneCall/contacts'/>
+          <AppIcon img='call' to='/PhoneCallFull/PhoneApp'/>
+          <AppIcon img='contacts' to='/PhoneCallFull/PhoneApp?aba=contacts'/>
           <AppIcon img='msg' to='/msg'/>
           <AppIcon img='camera' to='/camera'/>
         </div>
