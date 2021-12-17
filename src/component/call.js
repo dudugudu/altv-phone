@@ -28,6 +28,7 @@ let recents = [
   { "number": "956-252", "data": '1639669176169' },
   { "number": "967-252","data": '1639669176169' },
   { "number": "997-252", "data": '1639669176169' },
+  { "number": "997-252", "data": '1639589176169' },
 ]
   
  
@@ -109,10 +110,13 @@ let recents = [
         </div>
         <div className='LineNumber mb-2'>
           <div className='FakeNumber'>
-          {Backspace &&    <i class="fal fa-plus"></i>}
+          {Backspace &&    
+          <Link to={`/PhoneCallFull/Novocontato?lastpage=dialpad&number${numberDisc}`}>
+            <i class="fal fa-plus"></i>
+          </Link>}
           </div>
           <div className='NumberCenter green' onClick={()=>{Call()}}>
-            <i class="fal fa-phone-alt"></i>
+            <i class="material-icons white">call</i>
           </div> 
           <div className='FakeNumber'> 
             {Backspace &&   <i class="fal fa-backspace" onClick={()=>{NumberRem();attBack()}}></i>}
@@ -128,7 +132,7 @@ let recents = [
     <div className='FavouritessViweI'>
        <div className='between'>
         <h1>Favourites</h1>
-        <i class="fal fa-plus"></i>
+       
        </div>
       </div>
       <div className='FavouritesViweII'>
@@ -164,20 +168,15 @@ let recents = [
     </>)
   }
   function ViwerContacts() {
-  let contatos = [
-      { "number": "925-252", "data": { "name": "Eduardo", "favorito": false } },
-      { "number": "922-252", "data": { "name": "Andre", "favorito": false } },
-      { "number": "932-252", "data": { "name": "Gustavo", "favorito": false } },
-      { "number": "956-252", "data": { "name": "Xipanca", "favorito": false } },
-      { "number": "967-252", "data": { "name": "Allan", "favorito": false } },
-      { "number": "997-252", "data": { "name": "Nick", "favorito": false } }
-  ]
+  
    
     return(<>
      <div className='ContactsViweI'>
        <div className='between'>
         <h1>Contacts</h1>
-        <i class="fal fa-plus"></i>
+        <Link to='/PhoneCallFull/Novocontato?lastpage=contacts'>
+          <i class="fal fa-plus"></i>
+        </Link>
        </div>
        <div className='input-grup'>
           <i class="fal fa-search ml-1"></i>
@@ -314,15 +313,16 @@ function Temp(n) {
   let segunds = Math.floor(final / 1000 ) 
   let min = Math.floor(segunds / 60)
   let hr = Math.floor(min / 60)
-  console.log(temAtual);
-  if (hr > 0 ) {
+  let dia = Math.floor(hr / 24)
+  if (dia > 0 ) {
+    return hr + " days ago"
+  }else if (hr > 0 ) {
     return hr + " hours ago"
   }else if (min > 0) {
     return min + " minutes ago"
   }else if (segunds > 0) {
     return segunds + " seconds ago"
   }
-  
 }
 
 export {

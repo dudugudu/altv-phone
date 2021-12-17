@@ -6,6 +6,7 @@ import{CallApp} from './component/call'
 import{CallFull} from './component/callfull'
 import { Routes, Route } from "react-router-dom";
 import {useState,useEffect} from'react'
+import {motion} from 'framer-motion'
 
 function App() {
   const [Main, setMain] = useState({color:'transparent',img:'url(/static/media/walpaper.04f956eb.jpg)',filter:'blur(0)'})
@@ -40,11 +41,23 @@ function App() {
 function HomeCell({setMain,setDesfoc}) {
   useEffect(() => {
     setMain({color:'transparent',img:'url(/static/media/walpaper.04f956eb.jpg)'})
-    setDesfoc('none')
+    setDesfoc('block')
   }, [])
  
   return(<>
-    <div className='BVMain'></div>
+    <div className='BVMain'>
+    <motion.div
+        initial={{ opacity: 0, y: "100%" }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          type: "spring",
+          stiffness: 10,
+          damping: 12,
+        }}
+        className="container-main-rg"
+      ><div className='teste'>dsadasdasd</div></motion.div>
+
+    </div>
       <div className='BVRodape'>
         <div className='icon-Bar'>
           <AppIcon img='call' to='/PhoneCall/dialpad'/>
