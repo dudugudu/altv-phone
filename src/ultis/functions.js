@@ -71,5 +71,17 @@ function ModifierURL(URL){
 
 export function ReceivingCall() {
 
-  ModifierURL(`/PhoneCallfull/CallLink?number=${92252}`)
+  ModifierURL(`/PhoneCallfull/CallLink?number=${925822}`)
+}
+export function VerifyContact(n){
+  let contact = GetContact()
+  let exist = false
+  let final = ''
+  contact.map(function(obj){ if (obj.number === parseInt(n) ) { exist = true;  final = obj.data.name }})
+  if (!exist) {final = n }
+  return FormatStringNumber(final)
+}
+function FormatStringNumber(n) {
+  let t = n.split('');let count = 0;let formated = '';t.map((i) => {count ++;if (count === 3) {formated = formated  +i+ '-'}else{formated = formated + i}});
+  return formated
 }

@@ -13,7 +13,7 @@ function InfoContact({setMain,setDesfoc}) {
   return(<>
     <div className='BoxMainInfoContact'>
      <label > 
-       <Link to={`/PhoneCall/${query.get("lastpage")}`}>
+       <Link to={`/PhoneCallFull/PhoneApp?aba=${query.get("lastpage")}`}>
        <i class="material-icons-outlined">chevron_left</i> 
        </Link>
        <p>Contacts</p>

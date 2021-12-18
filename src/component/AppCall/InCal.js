@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
-import {TimeFormat} from '../../ultis/functions'
+import {TimeFormat ,VerifyContact} from '../../ultis/functions'
 import {useQuery,GetContact} from '../../ultis/functions'
+import {PlayerOn} from '../../celphoneextras'
 
 
 function Call({setMain,setDesfoc}) {
@@ -23,7 +24,8 @@ function Call({setMain,setDesfoc}) {
   return( 
   <div className='BoxMainCallLink'>
     <div className='BoxViwerCallLink'>
-      {Contact.map(function(obj) {if (obj.number === parseInt(query.get('number'))) {return(<h1> {obj.data.name} </h1>)} })}
+      
+      <h1>{VerifyContact(query.get('number')) }</h1>)
       
       {Inccall &&<p>{TimeFormat(timeLeft.decorido)}</p>}
       {Inccall &&  
@@ -40,6 +42,7 @@ function Call({setMain,setDesfoc}) {
                 <ButonCallTools name="Contacts">people</ButonCallTools>
             </div>
           </div>
+          <PlayerOn/>
         </div>    
       }
     </div>
@@ -51,8 +54,10 @@ function Call({setMain,setDesfoc}) {
           </div> 
         </Link>
         {!Inccall &&  
+        
           <div className='NumberCenterCallLink green' onClick={()=>{setInccall(true);setStyle('center');setTimeLeft({incal:true , decorido: 1})}}>
             <i class="material-icons">call</i>
+            <PlayerOn type='chamada'/>
           </div> 
         }
       </div>

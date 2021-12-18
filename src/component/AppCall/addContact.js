@@ -13,7 +13,7 @@ function AddContact({setMain,setDesfoc}) {
   return(<>
     <div className='BoxMainInfoContactadd'>
       <label> 
-        <Link to={`/PhoneCall/${query.get("lastpage")}`}>
+      <Link to={`/PhoneCallFull/PhoneApp?aba=${query.get("lastpage")}`}>
           <p className='blueC'>Cacelar</p> 
         </Link>
         <p className='new Tx-a-c'>New Contact</p> 
