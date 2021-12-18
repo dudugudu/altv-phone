@@ -7,8 +7,9 @@
     }
     
     body {
-        font-family: 'San Francisco'!important;
         font-weight: 400;
+        background-color: silver !important;
+        font-family: 'San Francisco'!important;
     }
     
     a {
@@ -858,7 +859,244 @@ BVRodape : area para 4 icons no rodape
         font-size: 10px;
         font-weight: 600;
     }
+    /*notify*/
     
-    .teste {
-        background-color: #0179fe;
+    .ExtNotify {
+        width: 220px;
+        border-radius: 8px;
+    }
+    
+    .topbarNotification {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 22px;
+        border-radius: 5px 5px 0 0;
+        background-color: #eef0ef;
+    }
+    
+    .CorpNotifi {
+        margin-top: -1px;
+        width: 100%;
+        border-radius: 0 0 5px 5px;
+        padding: 2px 6px 6px 6px;
+        background-color: #dddddd;
+        margin-bottom: 5px;
+    }
+    
+    .titleNotify {
+        margin-left: 5px;
+        font-size: 9px;
+        color: #929292;
+        font-weight: 600;
+    }
+    
+    .corpoTXTpincipla {
+        font-size: 10px;
+        font-weight: 600;
+    }
+    
+    .txtMensage {
+        width: 100%;
+        font-size: 9px;
+        word-break: break-word !important;
+    }
+    /**/
+    
+    .BoxMainMesages {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .BoxMainMesages label {
+        padding: 0 8px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .TitleViwer {
+        padding: 5px 8px 0 8px;
+    }
+    
+    .TitleViwer h1 {
+        margin-top: 5px;
+        font-weight: 600;
+        font-size: 22px;
+    }
+    
+    .flex i {
+        margin-left: -7px;
+    }
+    
+    .TopBar-Tools {
+        margin-top: 2px;
+        font-weight: 600;
+    }
+    
+    .MensageViweII {
+        padding-top: 5px;
+        overflow: auto;
+        width: 100%;
+        height: 404px;
+    }
+    
+    .CardMensage {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 55px;
+        padding: 0 0 0 10px;
+    }
+    
+    .IconAcountMensage {
+        display: flex;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background-size: 100%;
+    }
+    
+    .InfoCardMensage {
+        width: 184px;
+        height: 100%;
+        margin-left: 10px;
+        border-top: 1px solid #acacac;
+    }
+    
+    .InfoCardMensage .name {
+        padding: 2px 0 0 0;
+        width: 100%;
+        display: flex;
+        font-size: 11px;
+        font-weight: 600;
+    }
+    
+    .InfoCardMensage i {
+        color: #0179fe;
+    }
+    
+    .TxtAreaMensage {
+        font-weight: 500;
+        width: 100%;
+        font-size: 10px;
+        padding-right: .5rem;
+        word-break: break-word !important;
+    }
+    
+    .leftMensage {
+        font-size: 10px;
+        display: flex;
+        align-items: center;
+        color: #929292;
+        font-weight: 400;
+    }
+    
+    .leftMensage i {
+        font-size: 15px;
+        color: #929292;
+    }
+    /**/
+    
+    .InputConversation {
+        padding: 0 5px;
+    }
+    
+    .BtnSend {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #35c759;
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        margin-right: -1px;
+    }
+    
+    .BtnSend i {
+        font-size: 16px;
+        color: white;
+    }
+    
+    .input-grup-mensage {
+        padding: 0 .25rem;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        border: 1px solid #e5e5e5;
+        background-color: transparent;
+        height: 32px;
+        border-radius: 14px;
+        font-size: 12px;
+        color: #acacac;
+    }
+    
+    .input-grup-mensage .Input {
+        background-color: transparent;
+        width: 88%;
+        height: 24px;
+    }
+    
+    .input-grup-mensage .Input::placeholder {
+        color: #acacac;
+    }
+    
+    .Box-ViwerMensage-left {
+        margin-left: 10px;
+        padding: 5px;
+        max-width: 190px;
+        background-color: #E9E9EB;
+        font-size: 13px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        font-weight: 400;
+    }
+    
+    .Box-ViwerMensage-right {
+        float: right;
+        margin-right: 10px;
+        padding: 5px;
+        max-width: 190px;
+        background-color: #E9E9EB;
+        font-size: 13px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        color: white;
+        font-weight: 400;
+    }
+    
+    .boxIMmensage {
+        width: 60px;
+        height: 65px;
+    }
+    
+    .boxMsgPadrao {
+        width: 52px;
+    }
+    
+    .boxIMmensage .phone {
+        margin-top: 2px;
+        width: 100%;
+        font-size: 10px !important;
+        text-align: center;
+    }
+    
+    .PefilMsg {
+        margin-top: 5px;
+        margin-left: 10px;
+        width: 40px;
+        height: 40px;
+        background-color: rgb(104, 104, 104);
+        border-radius: 50%;
+    }
+    
+    .Border-button {
+        border: 1px solid #e5e5e5;
+    }
+    
+    .MensageViweI {
+        padding-top: 5px;
+        overflow: auto;
+        width: 100%;
+        height: 385px;
     }

@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import {TimeFormat} from '../../ultis/functions'
+import {useQuery,GetContact} from '../../ultis/functions'
+
 
 function Call({setMain,setDesfoc}) {
   const [Inccall,setInccall] = useState(false);  
   const [Style,setStyle] = useState('space-between');  
   const [timeLeft, setTimeLeft] = useState({incal:false, decorido:0});
-
+  const [Contact] = useState(GetContact());
+  let query = useQuery()
+  
   useEffect(() => {
     setMain({color:'transparent',img:'url(/static/media/walpaper.04f956eb.jpg)',filter:'blur(20px)'})
     setDesfoc('block')
@@ -19,7 +23,8 @@ function Call({setMain,setDesfoc}) {
   return( 
   <div className='BoxMainCallLink'>
     <div className='BoxViwerCallLink'>
-      <h1>995-120</h1>
+      {Contact.map(function(obj) {if (obj.number === parseInt(query.get('number'))) {return(<h1> {obj.data.name} </h1>)} })}
+      
       {Inccall &&<p>{TimeFormat(timeLeft.decorido)}</p>}
       {Inccall &&  
         <div className='BoxToolsCallLinkExt '>

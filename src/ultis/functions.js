@@ -1,13 +1,14 @@
 
-import { useLocation} from "react-router-dom";
+import { useLocation } from "react-router-dom";
+
 
 let contatos = [
-  { "number": "925-252", "data": { "name": "Eduardo", "favorito": false } },
-  { "number": "922-252", "data": { "name": "Andre", "favorito": false } },
-  { "number": "932-252", "data": { "name": "Gustavo", "favorito": true } },
-  { "number": "956-252", "data": { "name": "Xipanca", "favorito": false } },
-  { "number": "967-252", "data": { "name": "Allan", "favorito": false } },
-  { "number": "997-252", "data": { "name": "Nick", "favorito": false } }
+  { "number": 925252, "data": { "name": "Eduardo", "favorito": false } },
+  { "number": 922252, "data": { "name": "Andre", "favorito": false } },
+  { "number": 932252, "data": { "name": "Gustavo", "favorito": true } },
+  { "number": 956252, "data": { "name": "Xipanca", "favorito": false } },
+  { "number": 967252, "data": { "name": "Allan", "favorito": false } },
+  { "number": 997252, "data": { "name": "Nick", "favorito": false } }
 ]
 let recents = [
   { "number": "925-252", "data": '1639666300104' },
@@ -39,7 +40,7 @@ export function useQuery() {
 }
 
 export function CallNumber(n) {
-  alert(n)
+  //alt.emit()
 }
 export function WhatTime(n) {
   var temAtual = new Date().getTime();
@@ -57,4 +58,18 @@ export function WhatTime(n) {
   }else if (segunds > 0) {
     return segunds + " seconds ago"
   }
+}
+
+
+function ModifierURL(URL){
+  window.history.pushState({}, undefined, `${URL}`);
+ 
+  setTimeout(() => {
+    window.location.reload()
+  }, 2);
+}
+
+export function ReceivingCall() {
+
+  ModifierURL(`/PhoneCallfull/CallLink?number=${92252}`)
 }

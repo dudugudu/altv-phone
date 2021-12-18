@@ -30,8 +30,19 @@ function AppIcon({img,onclick,to}) {
     }
   
 
+    function Icon({name,w,h,ml,mr}) {
+      switch (name) {
+        case 'menssage':
+          return(<div   style={{  backgroundImage: `url(${msg})` ,width:w,height:h,backgroundSize:'100%',marginLeft:ml,marginRight:mr}}></div>)
+      
+        default:
+          break;
+      }
+      
+    }
 
 
     export {
-      AppIcon
+      AppIcon,
+      Icon
     } 

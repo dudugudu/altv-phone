@@ -33,7 +33,7 @@ function  PhoneApp({setMain,setDesfoc,BackPage}) {
         setStatus({I:!S,II:!S,III:S, IV:!S})
         break;
       case 'favourites':
-        setStatus({I:!S,II:!S,III:!S, IV:S})
+        setStatus({I:!S,II:!S,III:!S, IV:S })
         break;
       default:
     }
@@ -131,4 +131,7 @@ function CardFavourites({db}) {
   </>)
 }
 
+
+
 export {PhoneApp}
+
