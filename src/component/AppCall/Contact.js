@@ -2,11 +2,11 @@ import React from 'react';
 import { useState} from 'react'
 import { Link } from "react-router-dom";
 
-import {GetContact} from '../../ultis/functions'
+import urp from '../../ultis/main'
 
 
 function VwContact() {
-  const [Contact] = useState(GetContact());  
+  const [Contact] = useState(urp.Functions.GetContact());  
 
   return(<>
    <div className='ContactsViweI'>

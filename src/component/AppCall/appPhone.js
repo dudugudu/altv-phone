@@ -4,16 +4,17 @@ import { Link } from "react-router-dom";
 import React from 'react';
 import{VwKeypad} from './Keypad'
 import{VwContact} from './Contact'
-import {useQuery,GetContact,GetRecents,WhatTime} from '../../ultis/functions'
+
+import urp  from '../../ultis/main'
 
 function  PhoneApp({setMain,setDesfoc,BackPage}) {
   
   const [Status,setStatus] = useState({I:true,II:false,III:false, IV:false});  
-  const [Contact] = useState(GetContact());  
-  const [Recents] = useState(GetRecents());  
+  const [Contact] = useState(urp.Functions.GetContact());  
+  const [Recents] = useState(urp.Functions.GetRecents());  
   const [A,att] = useState(false);  
  
-  let query = useQuery()
+  let query = urp.Functions.useQuery()
 
   useEffect(() => {
     setMain({color:'#f8f7fc',img:'none'})
@@ -57,7 +58,7 @@ function  PhoneApp({setMain,setDesfoc,BackPage}) {
         <h1>Recentes</h1>
       </div>     
       <div className='RecentViweII'>
-        {Recents.map(function (obj) {return Contact.map(function (objII) {if ( objII.number === obj.number) {return( <CardRecent db={objII} data={WhatTime(obj.data)}/>)} return(<></>)})})}
+        {Recents.map(function (obj) {return Contact.map(function (objII) {if ( objII.number === obj.number) {return( <CardRecent db={objII} data={urp.Functions.WhatTime(obj.data)}/>)} return(<></>)})})}
       </div>
     </>)
   }

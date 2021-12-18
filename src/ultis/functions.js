@@ -11,38 +11,36 @@ let contatos = [
   { "number": 997252, "data": { "name": "Nick", "favorito": false } }
 ]
 let recents = [
-  { "number": "925-252", "data": '1639666300104' },
-  { "number": "922-252", "data": '1639667562581' },
-  { "number": "932-252","data": '1639669094192' },
-  { "number": "956-252", "data": '1639669176169' },
-  { "number": "967-252","data": '1639669176169' },
-  { "number": "997-252", "data": '1639669176169' },
-  { "number": "997-252", "data": '1639589176169' },
+  { "number": 925252, "data": '1639666300104' },
+  { "number": 922252, "data": '1639667562581' },
+  { "number": 932252,"data": '1639669094192' },
+  { "number": 956252, "data": '1639669176169' },
+  { "number": 967252,"data": '1639669176169' },
+  { "number": 997252, "data": '1639669176169' },
+  { "number": 997252, "data": '1639589176169' },
 ]
-
-
-export function GetContact() { 
+const GetContact = () => { 
   return contatos
 }
-export function GetRecents() {
+const GetRecents = () => {
   return recents
 }
 
 
-export function TimeFormat(x) {
+const TimeFormat = (x) => {
   let s = x;  let hr = Math.floor(s / 3600);  s %= 3600;  let min = Math.floor(s / 60);  let sec = s % 60;
   min = String(min).padStart(2, "0");  hr = String(hr).padStart(2, "0");  sec = String(sec).padStart(2, "0");  
   if (min <= 0) {return `${sec}`}else if (hr <=0) {return `${min}:${sec}`}else { return `${hr}:${min}:${sec}`}
 }
 
-export function useQuery() {
+const useQuery = ()=> {
   return new URLSearchParams(useLocation().search);
 }
 
-export function CallNumber(n) {
+const CallNumber = (n) =>{
   //alt.emit()
 }
-export function WhatTime(n) {
+const WhatTime = (n) =>{
   var temAtual = new Date().getTime();
   let final = temAtual - parseInt(n)
   let segunds = Math.floor(final / 1000 ) 
@@ -69,19 +67,32 @@ function ModifierURL(URL){
   }, 2);
 }
 
-export function ReceivingCall() {
-
+const ReceivingCall = () => {
   ModifierURL(`/PhoneCallfull/CallLink?number=${925822}`)
 }
-export function VerifyContact(n){
-  let contact = GetContact()
-  let exist = false
-  let final = ''
-  contact.map(function(obj){ if (obj.number === parseInt(n) ) { exist = true;  final = obj.data.name }})
-  if (!exist) {final = n }
-  return FormatStringNumber(final)
+const VerifyContact = (n) =>{
+  let contact = GetContact();let exist = false;let final = '';contact.map((obj)=>{ if (obj.number === parseInt(n) ) { exist = true;  final = obj.data.name }});if (!exist) {final = n } return FormatStringNumber(final)
 }
-function FormatStringNumber(n) {
-  let t = n.split('');let count = 0;let formated = '';t.map((i) => {count ++;if (count === 3) {formated = formated  +i+ '-'}else{formated = formated + i}});
+const FormatStringNumber = (n) => {
+  let t = n.split('');let count = 0;let formated = '';t.map((i) => {count ++;if (count === 3   ) {formated = formated  +i+ '-'}else{formated = formated + i}});
   return formated
 }
+
+const SaveContact = (data) => {
+ if (!VerifyNumber(data.number)) {
+  contatos.push(data)
+  console.log(">--Add");
+ }else{
+   console.log("exist");
+ }
+}
+const VerifyNumber =(n)=>{
+  let exist = false;
+  contatos.map((obj)=>{
+    if (obj.number === n) {exist= true;}
+  })
+  if (!exist) {return false}
+  return true
+}
+
+export default {GetContact, GetRecents,TimeFormat,useQuery,CallNumber,WhatTime,ReceivingCall,VerifyContact,SaveContact,FormatStringNumber}

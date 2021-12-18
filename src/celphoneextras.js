@@ -3,7 +3,7 @@ import model   from './img/iphone.png'
 import {useState,useEffect} from'react'
 import {ReceivingCall} from './ultis/functions'
 import { Button } from '@chakra-ui/react'
-
+import urp from './ultis/main'
 
 
 
@@ -29,7 +29,7 @@ function External({children,Main,Desfoc}) {
       </div>
       <div style={{position:'absolute'}}>
       
-          <Button  color='teal' size='xs' onClick={()=>{ReceivingCall()}} >Receber Ligação</Button>
+          <Button  color='teal' size='xs' onClick={()=>{urp.Functions.ReceivingCall()}} >Receber Ligação</Button>
         
       </div>
     </div>

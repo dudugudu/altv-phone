@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
-import {TimeFormat ,VerifyContact} from '../../ultis/functions'
-import {useQuery,GetContact} from '../../ultis/functions'
+import urp  from '../../ultis/main'
 import {PlayerOn} from '../../celphoneextras'
 
 
@@ -9,8 +8,8 @@ function Call({setMain,setDesfoc}) {
   const [Inccall,setInccall] = useState(false);  
   const [Style,setStyle] = useState('space-between');  
   const [timeLeft, setTimeLeft] = useState({incal:false, decorido:0});
-  const [Contact] = useState(GetContact());
-  let query = useQuery()
+  //const [Contact] = useState(urp.Functions.GetContact());
+  let query = urp.Functions.useQuery()
   
   useEffect(() => {
     setMain({color:'transparent',img:'url(/static/media/walpaper.04f956eb.jpg)',filter:'blur(20px)'})
@@ -25,9 +24,9 @@ function Call({setMain,setDesfoc}) {
   <div className='BoxMainCallLink'>
     <div className='BoxViwerCallLink'>
       
-      <h1>{VerifyContact(query.get('number')) }</h1>)
+      <h1>{urp.Functions.VerifyContact(query.get('number')) }</h1>)
       
-      {Inccall &&<p>{TimeFormat(timeLeft.decorido)}</p>}
+      {Inccall &&<p>{urp.Functions.TimeFormat(timeLeft.decorido)}</p>}
       {Inccall &&  
         <div className='BoxToolsCallLinkExt '>
           <div className='BoxToolsCallLink'>

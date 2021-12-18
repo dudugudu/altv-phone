@@ -1,9 +1,9 @@
 import {  useEffect } from 'react'
 import { Link } from "react-router-dom";
-import {useQuery} from '../../ultis/functions'
+import urp from '../../ultis/main'
 
 function InfoContact({setMain,setDesfoc}) {
-  let query = useQuery()
+  let query = urp.Functions.useQuery()
   // let favorito = query.get("favorito") --- A implementar
   useEffect(() => {
     setMain({color:'#f8f7fc',img:'none'})

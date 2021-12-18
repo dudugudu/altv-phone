@@ -1,12 +1,13 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
-import {CallNumber} from '../../ultis/functions'
+import urp  from '../../ultis/main'
 
 
 function VwKeypad() {
   const [GTZ,setGTZ] = useState(false);
   const [NumberDisc,setNumberDisc] = useState('');  
+ 
 
   useEffect(() => {
     let tm = NumberDisc.length
@@ -14,12 +15,14 @@ function VwKeypad() {
   }, [NumberDisc])
 
   function NumberAdd(n) {
-    setNumberDisc(NumberDisc+ n)
+    if (NumberDisc.length <6) {
+      setNumberDisc(NumberDisc+ n)
+    }
   }
 
   return(<>
       <div className='BoxDisc' >
-        <h1 id='NumberDisc'>{NumberDisc}</h1>
+        <h1 id='NumberDisc'>{urp.Functions.FormatStringNumber(NumberDisc)}</h1>
       </div>
       <div className='BoxNumber'>
         <div className='LineNumber mb-2'>
@@ -52,12 +55,12 @@ function VwKeypad() {
         <div className='LineNumber mb-2'>
           <div className='FakeNumber'>
             {GTZ &&    
-              <Link to={`/PhoneCallFull/Novocontato?lastpage=dialpad&number${NumberDisc}`}>
+              <Link to={`/PhoneCallFull/Novocontato?lastpage=dialpad&number=${NumberDisc}`}>
                 <i class="fal fa-plus"></i>
               </Link>
             }
           </div>
-          <div className='NumberCenter green' onClick={()=>{CallNumber(NumberDisc)}}>
+          <div className='NumberCenter green' onClick={()=>{urp.Functions.CallNumber(NumberDisc)}}>
             <i class="material-icons white">call</i>
           </div> 
           <div className='FakeNumber'> 

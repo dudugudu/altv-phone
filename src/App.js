@@ -1,13 +1,10 @@
 import './App.css';
 import React from 'react';
-import model   from './img/iphone.png'
 import { AppIcon,Icon } from './component/icons'
 import{PhoneFullViwer} from './component/phoneViwerFull'
 import { Routes, Route } from "react-router-dom";
 import {useState,useEffect} from'react'
 import {motion} from 'framer-motion'
-import {ReceivingCall} from './ultis/functions'
-import { Button } from '@chakra-ui/react'
 import{ External} from './celphoneextras'
 import {PlayerOn} from './celphoneextras'
 
