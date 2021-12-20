@@ -770,6 +770,7 @@ BVRodape : area para 4 icons no rodape
         background-image: url('./img/Perfis/pp.jpg');
         background-size: 100%;
     }
+    /* tirar quando  subistituit todos */
     
     .NumberCenterContacts {
         display: flex;
@@ -783,10 +784,7 @@ BVRodape : area para 4 icons no rodape
         background-color: #0179fe;
         cursor: pointer;
     }
-    
-    .NumberCenterContacts i {
-        font-size: 17px;
-    }
+    /* fim */
     
     .CardContactsTools {
         width: 100%;
@@ -799,6 +797,7 @@ BVRodape : area para 4 icons no rodape
         padding: 5px 10px;
         border-bottom: 1px solid #acacac;
     }
+    /* eliminar*/
     
     .GlobalContactsTolls {
         display: flex;
@@ -1100,4 +1099,10 @@ BVRodape : area para 4 icons no rodape
         background-position: center !important;
         background-repeat: no-repeat !important;
         background-size: 100% !important;
+    }
+    
+    .e {
+        justify-content: space-between;
+        justify-content: space-around;
+        justify-content: space-evenly;
     }
