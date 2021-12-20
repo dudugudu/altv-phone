@@ -165,5 +165,31 @@ function IconTxt({children,title,to,onclick,bcolor,colorCicle,color}) {
   </>)
 }
 
+Text.propTypes ={
+  width: PropTypes.string,
+  margin: PropTypes.string,
+  color: PropTypes.string,
+  txtaling: PropTypes.string,
+  to: PropTypes.string,
+  onclick: PropTypes.any,
+  cursor: PropTypes.bool,
+}
+function Text({children,width,margin,color,txtaling,to,onclick,cursor}) {
+  return( <>
+  <Link to={`${to}`} ><p onClick={onclick} style={{margin:margin?margin:'0',cursor:cursor?cursor:'auto', width:width?width:'100%',color:color?color:'#0179fe',textAlign:txtaling?txtaling:'center'}}>{children}</p></Link>
+  </>)
+}
 
-export  {Icon,Iconprofile,MsgRight,MsgLeft,BoxMessage,LineInfo,Cicle,SpaceBetween,SpaceAround,SpaceEvenly,Center,IconTxt}
+
+function TopBar({children,childrenLeft,childrenRight}) {
+  return(<>
+   <div style={{display:'flex', width:'240px',padding:'10px 5px',fontSize:'13px',fontWeight:'600'}}>
+    <div style={{ width:'75px' }}>{childrenLeft}</div>
+    <div style={{ width:'80px' }}>{children}</div>
+    <div style={{ width:' 75px' }}>{childrenRight}</div>
+   </div>
+  </>)
+}
+
+
+export  {Icon,Iconprofile,MsgRight,MsgLeft,BoxMessage,LineInfo,Cicle,SpaceBetween,SpaceAround,SpaceEvenly,Center,IconTxt,TopBar,Text}

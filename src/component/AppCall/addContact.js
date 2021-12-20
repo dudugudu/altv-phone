@@ -2,6 +2,7 @@ import {  useEffect,useState } from 'react'
 import { Link  } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import urp from '../../ultis/main'
+import {Center,TopBar,Text} from '../Tools/Componnests'
 
 function AddContact({setMain,setDesfoc}) {
   let query = urp.Functions.useQuery()
@@ -17,17 +18,14 @@ function AddContact({setMain,setDesfoc}) {
  
   return(<>
     <div className='BoxMainInfoContactadd'>
-      <label> 
-      <Link to={`/PhoneCallFull/PhoneApp?aba=${query.get("lastpage")}`}>
-          <p className='blueC'>Cacelar</p> 
-        </Link>
-        <p className='new Tx-a-c'>New Contact</p> 
-        
-          <p className='Tx-a-r' onClick={()=>{ if(urp.Functions.SaveContact(New)){ navigate('/');}}}>OK</p> 
-        
-      </label>
-      <div className='FullContact'><div className='PerfilContactsAdd'></div></div>
-      <div className='FullContact'><p className='addFoto Tx-a-c blueC'>Adicionar Foto</p></div>
+      <TopBar  
+      childrenLeft={
+      <Text txtaling='left' to={`/PhoneCallFull/PhoneApp?aba=${query.get("lastpage")}`} cursor>Cacelar</Text>
+      }childrenRight={
+        <Text color='Black' txtaling='right' onclick={()=>{ if(urp.Functions.SaveContact(New)){ navigate('/');}}} cursor>OK</Text>
+      }><Text color='black'>New Contact</Text></TopBar>
+      <Center><div className='PerfilContactsAdd'></div></Center>
+      <Center padding='5px 0'><p className='addFoto Tx-a-c blueC'>Adicionar Foto</p></Center>
       <div className='CardContactsTools'>
         <div className='NumberCenterNovoContato'>
           <input type="text"  placeholder='Nome' onKeyUp={(e)=>{ setNew({number: New.number, data:{ name:e.target.value,sobrenome:New.data.sobrenome,favorito:New.data.favorito,img:New.data.img}})}}/>

@@ -837,6 +837,7 @@ BVRodape : area para 4 icons no rodape
         justify-content: space-between;
         font-size: 13px;
         font-weight: 600;
+        background-color: chocolate;
     }
     
     .BoxMainInfoContactadd p {
@@ -856,7 +857,7 @@ BVRodape : area para 4 icons no rodape
     }
     
     .addFoto {
-        margin-top: -10px;
+        margin-top: -6px;
         width: 50% !important;
         font-size: 10px;
         font-weight: 600;
