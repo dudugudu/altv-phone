@@ -10,6 +10,10 @@
         font-weight: 400;
         background-color: silver !important;
         font-family: 'San Francisco'!important;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
     }
     
     a {
@@ -257,7 +261,6 @@ BVRodape : area para 4 icons no rodape
     }
     
     .iconAPP {
-        border-radius: .8rem;
         width: 40px;
         height: 40px;
         background-size: 100%;
@@ -904,6 +907,7 @@ BVRodape : area para 4 icons no rodape
     /**/
     
     .BoxMainMesages {
+        margin-left: .06rem;
         width: 100%;
         height: 100%;
     }
@@ -911,7 +915,6 @@ BVRodape : area para 4 icons no rodape
     .BoxMainMesages label {
         padding: 0 8px;
         display: flex;
-        align-items: center;
         justify-content: space-between;
     }
     
@@ -932,6 +935,7 @@ BVRodape : area para 4 icons no rodape
     .TopBar-Tools {
         margin-top: 2px;
         font-weight: 600;
+        justify-content: space-between;
     }
     
     .MensageViweII {
@@ -999,6 +1003,8 @@ BVRodape : area para 4 icons no rodape
     /**/
     
     .InputConversation {
+        display: flex;
+        align-items: center;
         padding: 0 5px;
     }
     
@@ -1011,6 +1017,7 @@ BVRodape : area para 4 icons no rodape
         width: 25px;
         height: 25px;
         margin-right: -1px;
+        cursor: pointer;
     }
     
     .BtnSend i {
@@ -1041,27 +1048,13 @@ BVRodape : area para 4 icons no rodape
         color: #acacac;
     }
     
-    .Box-ViwerMensage-left {
-        margin-left: 10px;
-        padding: 5px;
+    .Bx-msg {
+        display: flex;
+        padding: 5px 6px;
         max-width: 190px;
-        background-color: #E9E9EB;
         font-size: 13px;
         border-radius: 5px;
-        margin-bottom: 10px;
-        font-weight: 400;
-    }
-    
-    .Box-ViwerMensage-right {
-        float: right;
-        margin-right: 10px;
-        padding: 5px;
-        max-width: 190px;
-        background-color: #E9E9EB;
-        font-size: 13px;
-        border-radius: 5px;
-        margin-bottom: 10px;
-        color: white;
+        margin: 3px 0;
         font-weight: 400;
     }
     
@@ -1071,7 +1064,10 @@ BVRodape : area para 4 icons no rodape
     }
     
     .boxMsgPadrao {
-        width: 52px;
+        margin-top: 2px;
+        display: inline-flex;
+        width: 55px;
+        height: 100%;
     }
     
     .boxIMmensage .phone {
@@ -1086,8 +1082,6 @@ BVRodape : area para 4 icons no rodape
         margin-left: 10px;
         width: 40px;
         height: 40px;
-        background-color: rgb(104, 104, 104);
-        border-radius: 50%;
     }
     
     .Border-button {
@@ -1095,8 +1089,15 @@ BVRodape : area para 4 icons no rodape
     }
     
     .MensageViweI {
+        display: block;
         padding-top: 5px;
         overflow: auto;
         width: 100%;
         height: 385px;
+    }
+    
+    .Backgroud {
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        background-size: 100% !important;
     }

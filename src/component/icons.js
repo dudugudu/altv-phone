@@ -2,7 +2,7 @@
 import call   from '../img/icons/call.png'
 import contacts   from '../img/icons/contacts.png'
 import msg   from '../img/icons/messages.png'
-import cam   from '../img/icons/camera.png'
+import cam   from '../img/icons/calculator.png'
 
 import { Link } from "react-router-dom";
 

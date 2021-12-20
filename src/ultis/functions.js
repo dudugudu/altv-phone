@@ -1,23 +1,26 @@
 
 import { useLocation } from "react-router-dom";
 
+import { useNavigate,Route } from 'react-router-dom';
 
+
+import ReactDOM from 'react-dom';
 let contatos = [
-  { "number": 925252, "data": { "name": "Eduardo", "favorito": false } },
-  { "number": 922252, "data": { "name": "Andre", "favorito": false } },
-  { "number": 932252, "data": { "name": "Gustavo", "favorito": true } },
-  { "number": 956252, "data": { "name": "Xipanca", "favorito": false } },
-  { "number": 967252, "data": { "name": "Allan", "favorito": false } },
-  { "number": 997252, "data": { "name": "Nick", "favorito": false } }
+  { "number": '925252', "data": { "name": "Eduardo", "favorito": false } },
+  { "number": '922252', "data": { "name": "Andre", "favorito": false } },
+  { "number": '932252', "data": { "name": "Gustavo", "favorito": true } },
+  { "number": '956252', "data": { "name": "Xipanca", "favorito": false } },
+  { "number": '967252', "data": { "name": "Allan", "favorito": false } },
+  { "number": '997252', "data": { "name": "Nick", "favorito": false } }
 ]
 let recents = [
-  { "number": 925252, "data": '1639666300104' },
-  { "number": 922252, "data": '1639667562581' },
-  { "number": 932252,"data": '1639669094192' },
-  { "number": 956252, "data": '1639669176169' },
-  { "number": 967252,"data": '1639669176169' },
-  { "number": 997252, "data": '1639669176169' },
-  { "number": 997252, "data": '1639589176169' },
+  { "number": '925252', "data": '1639666300104' },
+  { "number": '922252', "data": '1639667562581' },
+  { "number": '932252',"data": '1639669094192' },
+  { "number": '956252', "data": '1639669176169' },
+  { "number": '967252',"data": '1639669176169' },
+  { "number": '997252', "data": '1639669176169' },
+  { "number": '997252', "data": '1639589176169' },
 ]
 const GetContact = () => { 
   return contatos
@@ -59,12 +62,15 @@ const WhatTime = (n) =>{
 }
 
 
-function ModifierURL(URL){
+const  ModifierURL =(URL) =>{
+ 
+  console.log(URL);
+  /*
   window.history.pushState({}, undefined, `${URL}`);
  
   setTimeout(() => {
     window.location.reload()
-  }, 2);
+  }, 100);*/
 }
 
 const ReceivingCall = () => {
@@ -81,10 +87,14 @@ const FormatStringNumber = (n) => {
 const SaveContact = (data) => {
  if (!VerifyNumber(data.number)) {
   contatos.push(data)
-  console.log(">--Add");
+  return true
  }else{
-   console.log("exist");
+   return false
  }
+}
+
+const teste =(params)=> {
+  console.log(params);
 }
 const VerifyNumber =(n)=>{
   let exist = false;
@@ -94,5 +104,8 @@ const VerifyNumber =(n)=>{
   if (!exist) {return false}
   return true
 }
+const VerifyTxt =(txt)=>{
+ if (txt.length > 1) { return txt}
+}
 
-export default {GetContact, GetRecents,TimeFormat,useQuery,CallNumber,WhatTime,ReceivingCall,VerifyContact,SaveContact,FormatStringNumber}
+export default {GetContact, GetRecents,TimeFormat,useQuery,CallNumber,WhatTime,ReceivingCall,VerifyContact,SaveContact,FormatStringNumber,ModifierURL,VerifyTxt}

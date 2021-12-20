@@ -23,6 +23,9 @@ function App() {
   );
 }
 
+
+
+
 function HomeCell({setMain,setDesfoc,calback}) {
   useEffect(() => {
     setMain({color:'transparent',img:'url(/static/media/walpaper.04f956eb.jpg)'})

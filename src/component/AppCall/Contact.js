@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState} from 'react'
 import { Link } from "react-router-dom";
-
+import { Icon } from '../Tools/Componnests';
 import urp from '../../ultis/main'
 
 
@@ -13,7 +13,7 @@ function VwContact() {
      <div className='between'>
       <h1>Contacts</h1>
       <Link to='/PhoneCallFull/Novocontato?lastpage=contacts'>
-        <i class="fal fa-plus"></i>
+        <Icon color='#0179fe' fontsize='19px' outlined>add</Icon>
       </Link>
      </div>
      <div className='input-grup'>
