@@ -6,23 +6,28 @@ import urp from '../../ultis/main'
 
 
 function VwContact() {
-  const [Contact] = useState(urp.Functions.GetContact());  
-
+  const [Contact] = useState(urp.communication.GetContact());  
+  const [SearchContact,setSearchContact] = useState('');  
+  
   return(<>
    <div className='ContactsViweI'>
      <div className='between'>
       <h1>Contacts</h1>
-      <Link to='/PhoneCallFull/Novocontato?lastpage=contacts'>
-        <Icon color='#0179fe' fontsize='19px' outlined>add</Icon>
-      </Link>
+    
+        <Icon to='/PhoneCallFull/Novocontato?lastpage=contacts' color='#0179fe' fontsize='19px' cursor outlined>add</Icon>
+     
      </div>
      <div className='input-grup'>
         <i class="fal fa-search ml-1"></i>
-        <input className='Input ml-2' type="text" placeholder='Search' />
+        <input className='Input ml-2' type="text" placeholder='Search' onChange={(e)=>{setSearchContact(e.target.value)}} />
      </div>
     </div>
     <div className='ContactsViweII'>
-      {Contact.map(obj => <CardContact db={obj}/>)}        
+      {Contact.map((obj) => {
+          if ( obj.data.name.toLowerCase().indexOf(SearchContact.toLowerCase()) != -1  ) {
+              return(<CardContact db={obj}/>) 
+          }
+        })}        
     </div>
   </>)
 }

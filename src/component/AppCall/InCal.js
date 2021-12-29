@@ -1,32 +1,70 @@
 import { useState, useEffect } from 'react'
-import { Link } from "react-router-dom";
 import urp  from '../../ultis/main'
-import {PlayerOn} from '../../celphoneextras'
+import {SoundChamada,SoundChamando} from '../../celphoneextras'
+import fdp from '../../img/walpaper.jpg'
+import { Cicle} from '../Tools/Componnests'
 
+function Call({setMain,setDesfoc,setBackBar}) {
+  useEffect(() => {
+    setMain({color:'transparent',img:`url(${fdp}`})
+    setDesfoc('block')
+    setBackBar(false)
+    
+  },[setMain,setDesfoc,setBackBar])
 
-function Call({setMain,setDesfoc}) {
-  const [Inccall,setInccall] = useState(false);  
+  let query = urp.Functions.useQuery()
+  const [Inccall,setInccall] = useState('false');  
+  const [InChanel,setChanel] = useState(false);  
+  const [ChanelName,setChanelName] = useState(query.get('number'));  
   const [Style,setStyle] = useState('space-between');  
   const [timeLeft, setTimeLeft] = useState({incal:false, decorido:0});
-  //const [Contact] = useState(urp.Functions.GetContact());
-  let query = urp.Functions.useQuery()
   
-  useEffect(() => {
-    setMain({color:'transparent',img:'url(/static/media/walpaper.04f956eb.jpg)',filter:'blur(20px)'})
-    setDesfoc('block')
-  },[setMain,setDesfoc])
+  
+  
+  
 
   useEffect(() => {
     timeLeft.incal && setTimeout(() => setTimeLeft({incal:true, decorido:  timeLeft.decorido + 1 }), 1000);
   }, [timeLeft]);
 
+  useEffect(()=>{
+    
+    if (query.get('chamada') === 'true') {
+      setStyle('center')
+      setInccall('chamando')
+    }
+     if (query.get('recebendo') === 'true') {
+      SoundChamada({type:'play'})
+      urp.communication.InserRecents(query.get('number'))
+    }else{
+      SoundChamando({type:'play'})
+    }
+   
+    if (urp.communication.CheckAtlV()) {
+      // eslint-disable-next-line no-undef
+      alt.on('Phone:InChanel', ()=>{  
+        if (query.get('recebendo') === 'false') {
+          setChanelName(urp.communication.MyNumber());
+          setChanel(true)
+          setTimeLeft({incal:true, decorido:  0 })
+          SoundChamando({type:'stop'});
+          setInccall('incall')
+        }
+      })
+     
+    }
+    
+  },[])
+
+ 
+ 
   return( 
   <div className='BoxMainCallLink'>
+    
     <div className='BoxViwerCallLink'>
+      <h1>{urp.communication.VerifyContact(query.get('number')) }</h1>)
       
-      <h1>{urp.Functions.VerifyContact(query.get('number')) }</h1>)
-      
-      {Inccall &&<p>{urp.Functions.TimeFormat(timeLeft.decorido)}</p>}
+      {Inccall === 'incall'? <p>{urp.Functions.TimeFormat(timeLeft.decorido)}</p> : Inccall === 'chamando'?<p>Chamando</p>: <></>}
       {Inccall &&  
         <div className='BoxToolsCallLinkExt '>
           <div className='BoxToolsCallLink'>
@@ -41,23 +79,26 @@ function Call({setMain,setDesfoc}) {
                 <ButonCallTools name="Contacts">people</ButonCallTools>
             </div>
           </div>
-          <PlayerOn/>
         </div>    
       }
     </div>
     <div className='CallLinkFull'>
       <div className='LineNumberCallLink' style={{ justifyContent: Style }}>
-        <Link to="/">
-          <div className='NumberCenterCallLink red' >
-            <i class="material-icons">call_end</i>
-          </div> 
-        </Link>
-        {!Inccall &&  
-        
-          <div className='NumberCenterCallLink green' onClick={()=>{setInccall(true);setStyle('center');setTimeLeft({incal:true , decorido: 1})}}>
-            <i class="material-icons">call</i>
-            <PlayerOn type='chamada'/>
-          </div> 
+
+        <Cicle to='/' fontsize='26px' bcolor='#eb4e3d' d='50px' onclick={()=>{urp.communication.DestroyCall(ChanelName,query.get('number'),InChanel); SoundChamando({type:'stop'})}} >call_end</Cicle>
+
+        {Inccall === 'incall' ? <></> : Inccall === 'chamando' ? <></>:
+          <Cicle fontsize='26px' bcolor='#35c759' d='50px' 
+          to={`/PhoneCallfull/CallLink?chamada=true&number=${query.get('number')}&recebendo=${query.get('recebendo')}`}
+          onclick={()=>{
+            urp.communication.AceptCall(query.get('number')); 
+            setInccall('incall');setStyle('center');
+            if(query.get('recebendo') === 'true'){
+              setChanel(true)
+              setTimeLeft({incal:true , decorido: 1})
+            }
+          }} 
+          >call</Cicle>   
         }
       </div>
     </div>
@@ -76,3 +117,8 @@ function ButonCallTools({children,name,onclick}){
 }
 
 export{ Call}
+
+
+///124620035 duduzeira
+///193320774 xipanca
+///166531286 nick

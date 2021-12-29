@@ -1,6 +1,12 @@
+import { useState } from 'react'
 import{ Link } from 'react-router-dom'
+import {Iconprofile} from '../Tools/Componnests'
+
+import urp from '../../ultis/main'
 function MesageMain({setMain,setDesfoc}) {
-  
+   let query = urp.Functions.useQuery()
+
+   const [Histoty,setHistory] = useState(urp.communication.GetHistory())
   return(<>
     <div className='BoxMainMesages'>
     <label className='TopBar-Tools'> 
@@ -19,35 +25,35 @@ function MesageMain({setMain,setDesfoc}) {
         <h1>Mensagens</h1>
       </div>
       <div className='MensageViweII'>
-      <Link to='/PhoneCallFull/MesageIn'>
-        <div className='CardMensage '>
-          <div className='IconAcountMensage' style={{backgroundImage: 'url("https://cdn.discordapp.com/attachments/693519401999269949/920631582887411742/pp_2.jpg")'}}></div>
+
+     {
+       Histoty.map((obj)=>{
+         if (obj.contain_message !== 0) {
+          return( <div>
+            
+            <Link to={`/PhoneCallFull/MesageIn?number=${urp.communication.WhatPhone(obj.id)}&chat_id=${obj.id}`}>
+        <div className='CardMensage ' onClick={()=>{urp.communication.GetChatId(obj.id)}}>
+        <Iconprofile width='35px'  height='35px'/>
           <div className='InfoCardMensage '>
               <label className='name between'>
-                <p>555-524</p>
+                <p>{urp.communication.VerifyContact(urp.communication.WhatPhone(obj.id))}</p>
                 <div className='leftMensage flex '> 
                   <p className='mr-2'>10:40</p>
                   <i class="material-icons-outlined">chevron_right</i>
                 </div>
                 </label>
-                <p className='TxtAreaMensage'>Bem vindo Eduardo Voce foi premiado com o consorcio do bau </p>
+                <p className='TxtAreaMensage'>{urp.communication.VerifyCharacter(obj.last_message)}</p>
             </div>
         </div>
       </Link>
-      <div className='CardMensage '>
-        <div className='IconAcountMensage' style={{backgroundImage: 'url("https://cdn.discordapp.com/attachments/693519401999269949/920631582887411742/pp_2.jpg")'}}></div>
-        <div className='InfoCardMensage '>
-            <label className='name between'>
-              <p>555-524</p>
-              <div className='leftMensage flex '> 
-                <p className='mr-2'>10:40</p>
-                <i class="material-icons-outlined">chevron_right</i>
-              </div>
-              </label>
-              <p className='TxtAreaMensage'>Bem vindo Eduardo Voce foi premiado com o consorcio do bau </p>
-          </div>
-      </div>
-     
+
+          </div> )
+        }
+        
+       })
+     }
+
+    
 
      </div>
     </div>

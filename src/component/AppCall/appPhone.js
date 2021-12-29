@@ -10,8 +10,8 @@ import urp  from '../../ultis/main'
 function  PhoneApp({setMain,setDesfoc,BackPage}) {
   
   const [Status,setStatus] = useState({I:true,II:false,III:false, IV:false});  
-  const [Contact] = useState(urp.Functions.GetContact());  
-  const [Recents] = useState(urp.Functions.GetRecents());  
+  const [Contact] = useState(urp.communication.GetContact());  
+  const [Recents] = useState(urp.communication.GetRecents());  
   const [A,att] = useState(false);  
  
   let query = urp.Functions.useQuery()
@@ -48,7 +48,8 @@ function  PhoneApp({setMain,setDesfoc,BackPage}) {
         </div>
       </div>
       <div className='FavouritesViweII'>
-        {Contact.map(function(obj){if(obj.data.favorito === true){ return (<CardFavourites db={obj}/>)}return(<></>)})}
+        { //Contact.map(function(obj){if(obj.data.favorito === true){ return (<CardFavourites db={obj}/>)}return(<></>)})
+        }
       </div>  
     </>)
   }
@@ -58,7 +59,8 @@ function  PhoneApp({setMain,setDesfoc,BackPage}) {
         <h1>Recentes</h1>
       </div>     
       <div className='RecentViweII'>
-        {Recents.map(function (obj) {return Contact.map(function (objII) {if ( objII.number === obj.number) {return( <CardRecent db={objII} data={urp.Functions.WhatTime(obj.data)}/>)} return(<></>)})})}
+        { Recents.map(function (obj) {return ( <CardRecent db={obj} data={urp.Functions.WhatTime(obj.data)}/>  )} ).reverse()
+        }
       </div>
     </>)
   }
@@ -104,12 +106,12 @@ function CardRecent({db,data}) {
         </div>
         <div className='InfoCard a-c'>
           <div className='InfoBox'>
-            <p className='name'>{db.data.name}</p>
+            <p className='name'>{db.name}</p>
             <p className='phone'>{db.number}</p>
           </div>
           <div className='InfoBox a-c mr-2'>
             <p className='time'>{data}</p>
-            <Link to={`/PhoneCallFull/infoContacts?number=${db.number}&name=${db.data.name}&favorito=${db.data.favorito}&lastpage=recents`}>
+            <Link to={`/PhoneCallFull/infoContacts?number=${db.number}&name=${db.name}&favorito=${''}&lastpage=recents`}>
               <i class="fal fa-info-circle ml-1"></i>
             </Link>
           </div>

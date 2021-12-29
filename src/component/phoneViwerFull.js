@@ -7,8 +7,9 @@ import {PhoneApp} from './AppCall/appPhone'
 import {MesageMain} from './Mesage/mensage'
 import {Conversation} from './Mesage/conversation'
 
-function  PhoneFullViwer({setMain,setDesfoc,BackPage}) {
+function  PhoneFullViwer({setMain,setDesfoc}) {
   const [Status,setStatus] = useState({I:false,II:false,III:false, IV:false});  
+  const [BackBar,setBackBar] = useState(true);  
   const{appType} = useParams();
 
   useEffect(() => {
@@ -45,15 +46,18 @@ function  PhoneFullViwer({setMain,setDesfoc,BackPage}) {
   return (<>
       <div className='BVMainFull' >
           {Status.I && <InfoContact  setMain={setMain} setDesfoc={setDesfoc}/>}    
-          {Status.II && <Call setMain={setMain} setDesfoc={setDesfoc}/>}    
+          {Status.II && <Call setMain={setMain} setDesfoc={setDesfoc} setBackBar={setBackBar}/>}    
           {Status.III && <AddContact setMain={setMain} setDesfoc={setDesfoc}/>}    
           {Status.IV && <PhoneApp setMain={setMain} setDesfoc={setDesfoc}/>}    
           {Status.V && <MesageMain setMain={setMain} setDesfoc={setDesfoc}/>}    
-          {Status.VI && <Conversation setMain={setMain} setDesfoc={setDesfoc}/>}    
+          {Status.VI && <Conversation setMain={setMain} setDesfoc={setDesfoc} />}    
       </div>
-      <Link to="/">
-      <div className='BarReturnExtern'><div className='BarRetunr' onClick={BackPage}></div></div>
-      </Link>
+      {BackBar && 
+       <Link to="/">
+       <div className='BarReturnExtern'><div className='BarRetunr' onClick={()=>{}}></div></div>
+       </Link>
+      }
+     
     </>)
 }
 

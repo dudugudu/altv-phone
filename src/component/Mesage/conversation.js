@@ -1,20 +1,50 @@
 import { useState,useEffect } from 'react'
-import{ Link } from 'react-router-dom'
 import urp from '../../ultis/main'
 import {Icon,Iconprofile,MsgRight,MsgLeft,BoxMessage} from '../Tools/Componnests'
-function Conversation({setMain,setDesfoc}) {
 
+function Conversation({setMain,setDesfoc}) {
+  let query = urp.Functions.useQuery()
   useEffect(() => {
     setMain({color:'#fff',img:'none'})
     setDesfoc('none')
   },[setMain,setDesfoc])
+  
   const [ssn]= useState(urp.communication.GetSSN())
-  const [HMensege,setHMensege]= useState(urp.communication.GetMessage())
+  const [HMensege,setHMensege]= useState([])
   const [Mensege,setMensege]= useState('')
-  useEffect(() => {
-    
+  const [Chat_id,setChat_id]= useState('')
 
-  }, [Mensege])
+  useEffect(() => {
+    setChat_id(query.get('chat_id'))
+    if (query.get('buscar') === 'true') {
+     
+       // eslint-disable-next-line no-undef
+      alt.emit('Phone:GetChatId',query.get('number'))
+      
+    }
+    scroll()
+    if (urp.communication.CheckAtlV()) {
+      // eslint-disable-next-line no-undef
+      alt.on('Phone:GetChatMessage', (result)=>{  
+        setHMensege(result)
+        scroll()
+      })
+      // eslint-disable-next-line no-undef
+      alt.on('Phone:ReciveMessage', (data)=>{  
+        // eslint-disable-next-line no-undef
+        urp.communication.GetChatId(data.chat_id)
+      })
+      // eslint-disable-next-line no-undef
+      alt.on('Phone:GetIdChat', (result)=>{  
+        setChat_id(result)
+      })
+     
+    }
+
+  }, [])
+
+ 
+ 
   return(<>
     <div className='BoxMainMesages'>
       <label className='TopBar-Tools'> 
@@ -26,24 +56,38 @@ function Conversation({setMain,setDesfoc}) {
           <div className='PefilMsg'>
             <Iconprofile width='40px'  height='40px'/>
           </div>
-          <p className='phone'>215-515</p>
+          <p className='phone'>{query.get('number')}</p>
         </div>
         <p className='boxMsgPadrao Tx-a-r'></p> 
       </label>
       <BoxMessage height='386px' bcolor='#fff' id='message' bt overflow>
             {HMensege.map((obj)=>{
-              if(obj.ssn === ssn){
-                return(<MsgRight>{ obj.menssage}</MsgRight>)
+                console.log(ssn);
+              if(obj.ssn == ssn){
+                return(<MsgRight>{ obj.message}</MsgRight>)
               }else{
-                return(<MsgLeft>{obj.menssage}</MsgLeft>)
+                return(<MsgLeft>{obj.message}</MsgLeft>)
               }
             })}
       </BoxMessage>
       <div className='InputConversation'>
-        <Icon color='#35c759' fontsize='20px' mr='5px' onclick={()=>{setHMensege([...HMensege, {ssn: ssn,type:'', menssage:<Icon color='#fff' cursor>share_location</Icon> }]);setMensege('');scroll()}} cursor  outlined >room</Icon>
+        <Icon color='#35c759' fontsize='20px' mr='5px' cursor  outlined >room</Icon>
         <div className='input-grup-mensage'>    
-            <input className='Input ml-1' type="text" placeholder='Search' value={Mensege} onChange={(e)=>{setMensege(e.target.value)}} onKeyUp={(e)=>{if(e.key === 'Enter') {if (urp.Functions.VerifyTxt(Mensege)){setHMensege([...HMensege, {ssn: ssn, menssage: Mensege}]);setMensege('');scroll()} }}}/>
-            <div className='BtnSend ' onClick={()=>{if (urp.Functions.VerifyTxt(Mensege)){setHMensege([...HMensege, {ssn: ssn, menssage: Mensege}]);setMensege('');scroll()}}}>
+            <input className='Input ml-1' type="text" placeholder='Search' value={Mensege} onChange={(e)=>{
+              setMensege(e.target.value)}} onKeyUp={(e)=>{
+                if(e.key === 'Enter') {
+                  if (urp.Functions.VerifyTxt(Mensege)){
+                    setHMensege([...HMensege, {type:'msg',ssn: ssn, message: Mensege}]);
+                    setMensege('');
+                    scroll()} 
+                    urp.communication.CreateMessage('msg',Mensege,Chat_id,query.get('number'))
+                }}}/>
+            <div className='BtnSend ' onClick={()=>{if (urp.Functions.VerifyTxt(Mensege)){
+              urp.communication.CreateMessage('msg',Mensege,Chat_id,query.get('number'));
+               setHMensege([...HMensege, {type:'msg',ssn: ssn, message: Mensege}]);
+               setMensege('');
+               scroll()
+               }}}>
               <i class="material-icons-outlined" >arrow_upward</i>
             </div>      
         </div>
@@ -62,3 +106,5 @@ function scroll() {
      </div> */
 
 export{Conversation}
+
+///urp.communication.VerifyContact(query.get('number'))

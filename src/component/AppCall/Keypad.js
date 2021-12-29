@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
-import { Link } from "react-router-dom";
 import urp  from '../../ultis/main'
 
+import { Cicle,Icon} from '../Tools/Componnests'
 
 function VwKeypad() {
   const [GTZ,setGTZ] = useState(false);
@@ -15,7 +15,7 @@ function VwKeypad() {
   }, [NumberDisc])
 
   function NumberAdd(n) {
-    if (NumberDisc.length <6) {
+    if (NumberDisc.length <9) {
       setNumberDisc(NumberDisc+ n)
     }
   }
@@ -54,17 +54,11 @@ function VwKeypad() {
         </div>
         <div className='LineNumber mb-2'>
           <div className='FakeNumber'>
-            {GTZ &&    
-              <Link to={`/PhoneCallFull/Novocontato?lastpage=dialpad&number=${NumberDisc}`}>
-                <i class="fal fa-plus"></i>
-              </Link>
-            }
+            {GTZ &&<Icon to={`/PhoneCallFull/Novocontato?lastpage=dialpad&number=${NumberDisc}`} color='#0179fe' fontsize='26px'>add</Icon> }
           </div>
-          <div className='NumberCenter green' onClick={()=>{urp.Functions.CallNumber(NumberDisc)}}>
-            <i class="material-icons white">call</i>
-          </div> 
+          <Cicle to={`/PhoneCallfull/CallLink?number=${NumberDisc}&recebendo=false&chamada=true`} fontsize='26px' d='50px' onclick={()=>{urp.communication.CallNumber(NumberDisc);urp.communication.InserRecents(NumberDisc)}} bcolor='#35c759' cursor>call</Cicle>
           <div className='FakeNumber'> 
-            {GTZ && <i class="fal fa-backspace" onClick={()=>{setNumberDisc( NumberDisc.substring(0, NumberDisc.length - 1))}}></i>}
+            {GTZ &&<Icon onclick={()=>{setNumberDisc( NumberDisc.substring(0, NumberDisc.length - 1))}}>backspace</Icon>}
           </div>
         </div>
       </div>

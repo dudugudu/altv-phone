@@ -10,6 +10,7 @@ Icon.propTypes ={
   outlined:PropTypes.bool,
   Margin:PropTypes.string,
   to:PropTypes.string,
+  cursor:PropTypes.bool,
 }
 
 function Icon({children,color,fontsize,outlined,Margin,cursor,to,onclick}){
@@ -142,8 +143,13 @@ Cicle.propTypes ={
 }
 
 function Cicle({children,d,color,fontsize,bcolor,outlined,ml,mr,cursor,to,onclick}) {
-  return(<><Link to={`${to}`}><div onClick={onclick} style={{display:'flex', justifyContent:'center', alignItems:'center', color:color?color:'white',width:d,height:d,backgroundColor:bcolor?bcolor:'#0179fe',borderRadius:'50%',marginLeft:ml?ml:'0',marginRight:mr?mr:'0',cursor:cursor?'pointer':'auto'}}><div style={{fontSize:fontsize?fontsize:'16px'}} className={outlined? 'material-icons-outlined':'material-icons'}>{children}</div></div></Link>
-  </>)
+  if (to === undefined || to === null) {to ='' }
+  return(<>{
+    to.length >= 1? 
+    <Link to={to}><div onClick={onclick} style={{display:'flex', justifyContent:'center', alignItems:'center', color:color?color:'white',width:d,height:d,backgroundColor:bcolor?bcolor:'#0179fe',borderRadius:'50%',marginLeft:ml?ml:'0',marginRight:mr?mr:'0',cursor:cursor?'pointer':'auto'}}><div style={{fontSize:fontsize?fontsize:'16px'}} className={outlined? 'material-icons-outlined':'material-icons'}>{children}</div></div></Link>
+    :
+    <div onClick={onclick} style={{display:'flex', justifyContent:'center', alignItems:'center', color:color?color:'white',width:d,height:d,backgroundColor:bcolor?bcolor:'#0179fe',borderRadius:'50%',marginLeft:ml?ml:'0',marginRight:mr?mr:'0',cursor:cursor?'pointer':'auto'}}><div style={{fontSize:fontsize?fontsize:'16px'}} className={outlined? 'material-icons-outlined':'material-icons'}>{children}</div></div>
+  }</>)
 }
 
 IconTxt.propTypes ={
@@ -156,9 +162,10 @@ IconTxt.propTypes ={
 }
 function IconTxt({children,title,to,onclick,bcolor,colorCicle,color}) {
   return(<>
+  
     <div>
       <Center width='50px'> 
-        <Cicle onClick={onclick} to={`${to}`} backgroundColor={bcolor?bcolor:'#0179fe'} color={colorCicle?colorCicle:'#fff'} fontsize='17px'  d='30px'>{children}</Cicle>
+        <Cicle onclick={onclick} to={to} backgroundColor={bcolor?bcolor:'#0179fe'} color={colorCicle?colorCicle:'#fff'} fontsize='17px'  d='30px'>{children}</Cicle>
       </Center>
       <p style={{ paddingTop:'2px',color:color?color:'#929292', fontSize:'8px',width:'100%',textAlign:"center",fontWeight:'600'}} >{title}</p>
     </div>
@@ -176,7 +183,7 @@ Text.propTypes ={
 }
 function Text({children,width,margin,color,txtaling,to,onclick,cursor}) {
   return( <>
-  <Link to={`${to}`} ><p onClick={onclick} style={{margin:margin?margin:'0',cursor:cursor?cursor:'auto', width:width?width:'100%',color:color?color:'#0179fe',textAlign:txtaling?txtaling:'center'}}>{children}</p></Link>
+  <Link to={`${to?to:[]}`} ><p onClick={onclick} style={{margin:margin?margin:'0',cursor:cursor?cursor:'auto', width:width?width:'100%',color:color?color:'#0179fe',textAlign:txtaling?txtaling:'center'}}>{children}</p></Link>
   </>)
 }
 
